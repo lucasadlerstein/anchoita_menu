@@ -1,65 +1,111 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, {useContext} from 'react';
+import styled from '@emotion/styled';
+import seleccionContext from '../context/seleccion/seleccionContext';
+import { useRouter } from 'next/router';
 
-export default function Home() {
+const Logo = styled.img`
+
+`;
+
+const Lista = styled.ul`
+  li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #7a7a7a;
+    text-transform: uppercase;
+    span {
+      color: #7a7a7a;
+    }
+  }
+  li:last-of-type{
+    border-bottom: 1px solid transparent;
+  }
+`;
+
+const ListaSubItems = styled.ul`
+  li {
+    border: none;
+    padding: 0;
+    text-transform: none;
+  }
+`;
+
+const Inicio = () => {
+
+  const SeleccionContext = useContext(seleccionContext);
+  const { cambiarSeleccion, etapa } = SeleccionContext;
+
+  const router = useRouter();
+
+  const clickEtapaInicial = selec => {
+    cambiarSeleccion('etapa', selec);
+    router.push(`/menu`);
+  }
+
+  const clickVinosInicial = selec => {
+    cambiarSeleccion('etapa', 'vinos');
+    cambiarSeleccion('v_pais', selec)
+    router.push(`/menu`);
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
+    <div style={{width: '60%', margin: 'auto'}}>
+      <Logo className="my-5" src="img/logo.png" alt="Logo Anchoita" />
+      <Lista>
+        <li><span>01. </span>
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            onClick={() => clickEtapaInicial('comidas')}
+          >Comida</a>
+        </li>
+        <li><span>02. </span>
+          <a onClick={etapa === 'vinos' ? () => cambiarSeleccion('etapa', null) : () => cambiarSeleccion('etapa', 'vinos')}>
+            Vinos
           </a>
-
+          {
+            etapa === 'vinos' ? (
+              <ListaSubItems>
+                <li>
+                  <a
+                    onClick={() => clickVinosInicial('copa')}
+                  >
+                    Por copa
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onClick={() => clickVinosInicial('argentina')}
+                  >
+                    Argentina
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onClick={() => clickVinosInicial('mundo')}
+                  >
+                    Del mundo
+                  </a>
+                </li>
+              </ListaSubItems>
+            ) : null
+          }
+        </li>
+        
+        <li><span>03. </span>
           <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
+            onClick={() => clickEtapaInicial('cocteleria')}
           >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            Coctelería
           </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        </li>
+        <li><span>04. </span>
+          <a
+            onClick={() => clickEtapaInicial('bebidas')}
+          >
+            Bebidas
+          </a>
+        </li>
+      </Lista>
     </div>
-  )
+  );
 }
+ 
+export default Inicio;

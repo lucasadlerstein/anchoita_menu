@@ -1,0 +1,9 @@
+export const NUEVA_ETAPA = 'NUEVA_ETAPA';
+export const NUEVA_V_PAIS = 'NUEVA_V_PAIS';
+export const NUEVA_V_TIPO = 'NUEVA_V_TIPO';
+export const VISIBILIDAD_CARRITO = 'VISIBILIDAD_CARRITO';
+
+export const VACIAR_CARRITO = 'VACIAR_CARRITO';
+export const CAMBIAR_CANTIDAD = 'CAMBIAR_CANTIDAD';
+export const AGREGAR_NUEVO = 'AGREGAR_NUEVO';
+export const GET_STORAGE = 'GET_STORAGE';

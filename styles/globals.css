@@ -1,16 +1,52 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+  --colorAzul: #11314a;
+  --colorNaranja: #9a3a24;
+  --fuentePrincipal: Arial, sans-serif;
+  --fuenteSecundaria: Georgia, 'Times New Roman', Times, serif;
 }
 
-a {
-  color: inherit;
+html {
+  box-sizing: 	border-box;
+  font-size: 62.5%;
+  background-color: var(--colorNaranja);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--colorAzul);
+  max-width: 40rem;
+  margin: 1rem auto;
+  min-height: calc(100vh - 2rem);
+  color: white;
+  font-size: 1.6rem;
+  -webkit-box-shadow: -3px 5px 43px -19px rgba(151, 129, 129, 0.75);
+  -moz-box-shadow: -3px 5px 43px -19px rgba(0,0,0,0.75);
+  box-shadow: -3px 5px 43px -19px rgba(0,0,0,0.75);
+}
+
+*, *:before, *:after{
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+a, a:hover {
+  cursor: pointer;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.py-5r {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.activo {
+  color: var(--colorNaranja)!important;
 }
