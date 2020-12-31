@@ -50,3 +50,11 @@ ul {
 .activo {
   color: var(--colorNaranja)!important;
 }
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}

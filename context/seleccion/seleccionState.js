@@ -1,7 +1,7 @@
 import React, {useReducer, useState, useEffect} from 'react';
 import seleccionContext from './seleccionContext';
 import seleccionReducer from './seleccionReducer';
-import { NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE } from '../../types/index';
+import { NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA } from '../../types/index';
 
 const SeleccionState = ({children}) => {
 
@@ -10,17 +10,18 @@ const SeleccionState = ({children}) => {
         v_pais: null,
         v_tipo: null,
         carrito: false,
+        busqueda: '',
         productosCarrito: [
-            {
-                categoria: 'comidas',
-                nombre: 'Bla bla bla',
-                cantidad: 1
-            },
-            {
-                categoria: 'comidas',
-                nombre: 'Bla bla blassss s s',
-                cantidad: 1
-            },
+            // {
+            //     categoria: 'comidas',
+            //     nombre: 'Bla bla bla',
+            //     cantidad: 1
+            // },
+            // {
+            //     categoria: 'comidas',
+            //     nombre: 'Bla bla blassss s s',
+            //     cantidad: 1
+            // },
         ]
     }
 
@@ -56,7 +57,6 @@ const SeleccionState = ({children}) => {
         dispatch({
             type: VACIAR_CARRITO
         })
-        actualizarStorage();
     }
 
     const cambiarCantidad = (nombre, operacion) => {
@@ -68,11 +68,29 @@ const SeleccionState = ({children}) => {
         actualizarStorage();
     }
 
-    const agregarNuevo = (info) => {
-        dispatch({
-            type: AGREGAR_NUEVO,
-            payload: info
+    const agregarNuevo = (informacion) => {
+        let existe = false;
+        state.productosCarrito.forEach(producto => {
+            if(producto.nombre === informacion.nombre) {
+                existe = true;
+            }
         })
+        if(existe) {
+            const info = { 
+                nombre: informacion.nombre, 
+                operacion: 'suma'
+            }
+            dispatch({
+                type: CAMBIAR_CANTIDAD,
+                payload: info
+            })
+        } else {
+            dispatch({
+                type: AGREGAR_NUEVO,
+                payload: informacion
+            })
+        }
+        
         actualizarStorage();
     }
 
@@ -87,6 +105,13 @@ const SeleccionState = ({children}) => {
         })
     }
 
+    const cambiarBusqueda = (typeado) => {
+        dispatch({
+            type: CAMBIAR_BUSQUEDA,
+            payload: typeado
+        })
+    }
+
     return (
         <seleccionContext.Provider
             value={{
@@ -95,13 +120,15 @@ const SeleccionState = ({children}) => {
                 v_tipo: state.v_tipo,
                 carrito: state.carrito,
                 productosCarrito: state.productosCarrito,
+                busqueda: state.busqueda,
                 cambiarSeleccion,
                 visibilidadCarrito,
                 vaciarCarrito,
                 cambiarCantidad,
                 agregarNuevo,
                 actualizarStorage,
-                getStorage
+                getStorage,
+                cambiarBusqueda,
             }}
         >
             {children}

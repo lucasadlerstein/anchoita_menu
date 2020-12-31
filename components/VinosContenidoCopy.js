@@ -95,55 +95,34 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
 
     return (
         <Fondo>
+            {/* <VolverBtn>VOLVER</VolverBtn> */}
+
+            {/* <TipoUva>Salta</TipoUva> */}
+            {/* <Provincia>Chardonnay</Provincia> */}
+
             {
-                categorias.map((cat, i) => (
-                    <div key={cat.codigo}>
-                        <TipoUva id={cat.codigo}>{cat.nombre}</TipoUva>
+                categorias.map((item, i) => (
+                    <div key={item.codigo}>
+                        <TipoUva id={item.codigo}>{item.nombre}</TipoUva>
                         {
                             regiones.map((reg, index) => {
                                 if(reg.pais === pais || pais === 'copa') {
-                                    return (
-                                        contenido.map(prod => (
-                                        <div key={prod.id}>  
-                                            {
-                                                (pais === 'copa') ? (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true) ? (
-                                                        <Provincia key={reg.es}>{reg.es}</Provincia>
-                                                    ) : null
-                                                ) : (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo) ? (
-                                                        <Provincia key={reg.es}>{reg.es}</Provincia>
-                                                    ) : null
-                                                )
-                                            }
-                                            
-                                            {
-                                                (prod.tipo === cat.codigo && prod.region === reg.es) ? (
-                                                    (pais === 'argentina' && prod.pais === 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'mundo' && prod.pais !== 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'copa' && prod.copa === true) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : null
-                                                ) : null
-                                            }
-
-                                            {           
-                                                ((prod.region === reg.es && cat.codigo === 'tamanos') && (prod.t375 || prod.t500 || prod.t1125 || prod.t1500 || prod.t3000) ) ? (
-                                                    (pais === 'argentina' && prod.pais === 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'mundo' && prod.pais !== 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'copa' && prod.copa === true) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : null
-                                                ) : null
-                                            }
-                                        </div>
-                                        )))
-                                    }
-                            })
+                                return (
+                                <div key={reg.es}>
+                                    <Provincia id={reg.es}>{reg.es}</Provincia>
+                                    {contenido.map(prod => (
+                                        (prod.tipo === item.codigo && prod.region === reg.es) ? (
+                                            (pais === 'argentina' && prod.pais === 'Argentina') ? (
+                                                <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                            ) : (pais === 'mundo' && prod.pais !== 'Argentina') ? (
+                                                <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                            ) : (pais === 'copa' && prod.copa === true) ? (
+                                                <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                            ) : null
+                                        ) : null
+                                    ))}
+                                </div>
+                            )}})
                         }
                     </div>       
                 ))

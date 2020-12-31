@@ -7,11 +7,14 @@ import VinosContenido from '../../components/VinosContenido';
 import seleccionContext from '../../context/seleccion/seleccionContext';
 import Carrito from '../../components/Carrito';
 import clienteAxios from '../../config/axios';
+import styled from '@emotion/styled';
 
 const Menu = () => {
 
     const SeleccionContext = useContext(seleccionContext);
-    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage } = SeleccionContext;
+    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda } = SeleccionContext;
+
+    const [buscador, setBuscador] = useState(false);
 
     const [vinos, setVinos] = useState([]);
     const [cocteles, setCocteles] = useState([]);
@@ -22,10 +25,6 @@ const Menu = () => {
             getStorage();
         }
         async function traerInfo() {
-            await clienteAxios.get('/vinos/todos')
-                .then(resp => { setVinos(resp.data.vinos); })
-                .catch(err => { console.log('V-404-V'); })
-
             await clienteAxios.get('/platos/todos')
                 .then(resp => { setPlatos(resp.data.platos); })
                 .catch(err => { console.log('P-404-P'); })
@@ -33,6 +32,10 @@ const Menu = () => {
             await clienteAxios.get('/cocteles/todos')
                 .then(resp => { setCocteles(resp.data.cocteles); })
                 .catch(err => { console.log('C-404-C'); })
+
+            await clienteAxios.get('/vinos/todos')
+                .then(resp => { setVinos(resp.data.vinos); })
+                .catch(err => { console.log('V-404-V'); })
         }
         traerInfo();
         // eslint-disable-next-line
@@ -61,32 +64,63 @@ const Menu = () => {
         { nombre: 'Tinto', codigo: 'tinto' },
         { nombre: 'Dulce', codigo: 'dulce' },
         { nombre: 'Fortificado seco', codigo: 'fort-seco' },
-        { nombre: 'Fortificado dulce', codigo: 'fort-dulce' }
+        { nombre: 'Fortificado dulce', codigo: 'fort-dulce' },
+        { nombre: 'Otros tamaños', codigo: 'tamanos' },
     ]
 
     const cCocteleria = [ 
-        { nombre: 'Bebidas', codigo: 'Bebidas' },
         { nombre: 'Cócteles', codigo: 'Cócteles' },
         { nombre: 'Refrescos', codigo: 'Refrescos' },
         { nombre: 'Cervezas', codigo: 'Cervezas' },
         { nombre: 'Sidras', codigo: 'Sidras' },
         { nombre: 'Destilados', codigo: 'Destilados' },
+        // { nombre: 'Bebidas', codigo: 'Bebidas' },
     ]
+
+    const cBebidas = [
+        { nombre: 'Bebidas', codigo: 'Bebidas' },
+    ]
+
+    const BuscadorInput = styled.input`
+        border: none;
+        border-bottom: 1px solid white;
+        color: white;
+        background-color: transparent;
+
+        &:focus {
+            outline: none;
+        }
+    `;
+
+    const handleChangeBusqueda = e => {
+        cambiarBusqueda(e.target.value)
+    }
 
     return (
         <Container className="py-5r">
             <Row>
-                <Col xs={2} className="my-auto text-right">
-                    <img src="img/search-icon.png" alt="Buscar en el menú" style={{width: '2rem'}} />
+                <Col xs={buscador ? 7 : 2} className="my-auto text-right">
+                    { buscador ? (
+                        <BuscadorInput type="text" autoFocus value={busqueda} onChange={handleChangeBusqueda} />
+                    ) : null }
+                    {
+                        buscador ? (
+                            <a onClick={() => {
+                                setBuscador(!buscador)
+                                cambiarBusqueda('')
+                            }}>X</a>
+                        ) : (
+                            <a onClick={() => setBuscador(!buscador)} ><img src="img/search-icon.png" alt="Buscar en el menú" style={{width: '2rem'}} /></a>
+                        )
+                    }
                 </Col>
-                <Col xs={8} className="text-center">
+                <Col xs={buscador ? 3 : 8} className={`text-center ${buscador ? 'px-0' : ''}`}>
                     <img src="img/logo-menu.png" alt="Logo Anchoita" style={{maxHeight: '4rem'}} />
                 </Col>
-                <Col xs={2} className="my-auto text-left">
-                    <a
-                        onClick={() => visibilidadCarrito(carrito)}
-                    ><img  src="img/pedido-icon.png" alt="Ver mi pedido" style={{width: '2rem'}} /></a>
-                    
+                <Col xs={2} className={`my-auto text-left`}>
+                    <a onClick={() => visibilidadCarrito(carrito)}>
+                        <img  src="img/pedido-icon.png" alt="Ver mi pedido" style={{width: '2rem'}} />
+                    </a>
                 </Col>
             </Row>
 
@@ -114,7 +148,7 @@ const Menu = () => {
 
             {
                 (etapa === 'bebidas') ? (
-                    <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cCocteleria} etapa={etapa} />
+                    <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cBebidas} etapa={etapa} />
                 ) : null
             }
 

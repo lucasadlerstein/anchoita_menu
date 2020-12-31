@@ -61,8 +61,8 @@ const MenuContenido = ({contenido, tipo, categorias, etapa}) => {
 
             {
                 categorias.map((item, i) => (
-                    <>
-                        <Provincia key={item.codigo} id={item.codigo}>{item.nombre}</Provincia>
+                    <div key={item.codigo}>
+                        <Provincia id={item.codigo}>{item.nombre}</Provincia>
                         {
                             contenido.map(prod => (
                                 (prod.categoria === item.codigo) ? (
@@ -70,7 +70,7 @@ const MenuContenido = ({contenido, tipo, categorias, etapa}) => {
                                 ) : null
                             ))
                         }
-                    </>       
+                    </div>       
                 ))
             }
         </Fondo>

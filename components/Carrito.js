@@ -48,10 +48,16 @@ const Categoria = styled.h5`
     padding-top: 1rem;
 `;
 
+const BotonesCarrito = styled.div`
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+`;
+
 const Carrito = () => {
 
     const SeleccionContext = useContext(seleccionContext);
-    const { carrito, visibilidadCarrito, productosCarrito } = SeleccionContext;
+    const { carrito, visibilidadCarrito, productosCarrito, vaciarCarrito } = SeleccionContext;
 
     const [hayComidas, setHayComidas] = useState(false)
     const [hayVinos, setHayVinos] = useState(false)
@@ -65,7 +71,7 @@ const Carrito = () => {
                     setHayBebidas(true)
                 } else if (prod.categoria === 'vinos') {
                     setHayVinos(true)
-                } else if (prod.categoria === 'cocteles') {
+                } else if (prod.categoria === 'cocteleria') {
                     setHayCocteles(true)
                 } else if (prod.categoria === 'comidas') {
                     setHayComidas(true)
@@ -75,13 +81,29 @@ const Carrito = () => {
         // eslint-disable-next-line
     }, [])
 
+    function clickVaciarCarrito() {
+        vaciarCarrito()
+        setHayBebidas(false);
+        setHayVinos(false);
+        setHayCocteles(false);
+        setHayComidas(false);
+        visibilidadCarrito(true);
+    } 
+
     return (
         <Fondo id="carrito">
-            <div style={{marginBottom: '1rem'}}>
+            <BotonesCarrito>
                 <Cerrar
                     onClick={() => visibilidadCarrito(carrito)}
-                >X</Cerrar>
-            </div>
+                >
+                    <img height="20" src="img/cerrar-carrito-icon.png" alt="Cerrar carrito" />
+                </Cerrar>
+                <Cerrar
+                    onClick={() => clickVaciarCarrito()}
+                >
+                    <img height="30" src="img/vaciar-carrito-icon.png" alt="Vaciar carrito" />
+                </Cerrar>
+            </BotonesCarrito>
             {
                 (hayComidas) ? (
                     <>
@@ -115,7 +137,7 @@ const Carrito = () => {
                     <>
                         <Categoria>Cócteles</Categoria> 
                         {productosCarrito.map((item, id) => {
-                            if(item.categoria === 'cocteles' && item.cantidad !== 0) {
+                            if(item.categoria === 'cocteleria' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />
                             }
                         }

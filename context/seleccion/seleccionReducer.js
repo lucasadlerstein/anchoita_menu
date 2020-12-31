@@ -1,5 +1,5 @@
 import {
-    NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE
+    NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA
 } from '../../types/index';
 
 const Reducer = (state, action) => {
@@ -34,6 +34,7 @@ const Reducer = (state, action) => {
             }
 
         case VACIAR_CARRITO:
+            localStorage.removeItem('carrito');
             return {
                 ...state,
                 productosCarrito: []
@@ -67,6 +68,12 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 productosCarrito: action.payload
+            }
+
+        case CAMBIAR_BUSQUEDA:
+            return {
+                ...state,
+                busqueda: action.payload
             }
 
         default:
