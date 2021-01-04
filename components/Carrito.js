@@ -44,7 +44,7 @@ const Categoria = styled.h5`
     text-transform: uppercase;
     color: var(--colorAzul);
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding-top: 1rem;
 `;
 

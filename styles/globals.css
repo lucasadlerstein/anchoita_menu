@@ -1,9 +1,51 @@
 :root {
   --colorAzul: #11314a;
   --colorNaranja: #9a3a24;
-  --fuentePrincipal: Arial, sans-serif;
-  --fuenteSecundaria: Georgia, 'Times New Roman', Times, serif;
+  --fuentePrincipal: 'RobotoCondensed', 'Henderson', sans-serif;
+  --fuenteSecundaria: 'RobotoCondensed', 'Henderson', serif;
 }
+
+@font-face {
+  font-family: "Henderson";
+  src: url("/fonts/Henderson/Henderson-Sans-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Henderson";
+  src: url("/fonts/Henderson/Henderson-Sans-Regular-Italic.otf");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Henderson";
+  src: url("/fonts/Henderson/Henderson-Sans-Bold.otf");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RobotoCondensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf");
+  unicode-range: U+30-39;
+}
+
+@font-face {
+  font-family: 'RobotoCondensed';
+  font-style: bold;
+  font-weight: 600;
+  src: url("/fonts/RobotoCondensed/RobotoCondensed-Bold.ttf");
+  unicode-range: U+30-39;
+}
+
+
 
 html {
   box-sizing: 	border-box;
@@ -18,7 +60,8 @@ body {
   color: white;
   min-height: 100vh;
   margin: 0 auto;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-family: var(--fuentePrincipal);
   -webkit-box-shadow: -3px 5px 43px -19px rgba(151, 129, 129, 0.75);
   -moz-box-shadow: -3px 5px 43px -19px rgba(0,0,0,0.75);
   box-shadow: -3px 5px 43px -19px rgba(0,0,0,0.75);

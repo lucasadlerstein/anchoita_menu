@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const Logo = styled.img`
 
@@ -48,6 +49,39 @@ const Inicio = () => {
   }
 
   return (
+    <>
+    <Head>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <title>Anchoita | Menú Digital</title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="menu, anchoita, comida, vinos, Anchoita Argentina, Juan Ramírez de Velasco 1520" />
+      {/* <meta name="robots" content="index, follow" /> */}
+      <link
+          rel="preload"
+          href="/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf"
+          as="font"
+          crossOrigin=""
+      />
+      <link
+          rel="preload"
+          href="/fonts/RobotoCondensed/RobotoCondensed-Bold.ttf"
+          as="font"
+          crossOrigin=""
+      />
+      <link
+        rel="preload"
+        href="/fonts/Henderson/Henderson-Sans-Regular.otf"
+        as="font"
+        crossOrigin=""
+      />
+      <link
+        rel="preload"
+        href="/fonts/Henderson/Henderson-Sans-Bold.otf"
+        as="font"
+        crossOrigin=""
+      />
+    </Head>
     <div style={{width: '60%', margin: 'auto'}}>
       <Logo className="my-5" src="img/logo.png" alt="Logo Anchoita" />
       <Lista>
@@ -105,6 +139,7 @@ const Inicio = () => {
         </li>
       </Lista>
     </div>
+    </>
   );
 }
  

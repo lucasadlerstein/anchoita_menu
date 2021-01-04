@@ -12,19 +12,20 @@ const Item = styled(Row)`
 
 const Nombre = styled.p`
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin: 0;
 `;
 
 const Vinedo = styled.p`
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 `;
 
 const Precio = styled.p`
-    font-weight: bold;
+    /* font-weight: bold; */
     margin: 0 1rem 0 0;
     text-align: right;
+    font-size: 1.8rem;
 `;
 
 const AgregarBtn = styled.button`
@@ -37,7 +38,7 @@ const AgregarBtn = styled.button`
     font-size: 2.5rem;
     /* margin: auto; */
     position: absolute;
-    top: -12px;
+    top: -8px;
     &:hover{
         color: var(--colorNaranja);
     }

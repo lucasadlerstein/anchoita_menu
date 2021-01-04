@@ -10,6 +10,7 @@ const Item = styled.button`
     background-color: transparent;
     border: none;
     color: white;
+    font-size: 1.2rem;
     text-transform: uppercase;
     transition: all .3s ease;
     &:hover {

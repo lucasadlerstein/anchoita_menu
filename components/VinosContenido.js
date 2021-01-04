@@ -4,7 +4,7 @@ import ItemIndividual from './ItemIndividual';
 
 const Fondo = styled.div`
     background-color: white;
-    padding: 4rem 0;
+    padding: 1rem 0;
     position: relative;
 `;
 const VolverBtn = styled.button`
@@ -29,8 +29,10 @@ const TipoUva = styled.p`
     text-transform: uppercase;
     color: var(--colorNaranja);
     padding-left: 3rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: .5rem;
+    font-weight: bold;
+    margin-top: 3rem;
 `;
 const Provincia = styled.p`
     color: black;
@@ -53,44 +55,44 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
     }, [])
 
     const regiones = [
-        { pais: 'mundo', es: 'Borgoña', en: 'Burgundy' },
-        { pais: 'mundo', es: 'Burdeos', en: 'Bordeaux' },
-        { pais: 'mundo', es: 'Champagne', en: 'Champagne' },
-        { pais: 'mundo', es: 'Toscana', en: 'Tuscany' },
-        { pais: 'mundo', es: 'Piemonte', en: '' },
-        { pais: 'mundo', es: 'Mosel', en: '' },
-        { pais: 'mundo', es: 'Malborough', en: '' },
-        { pais: 'mundo', es: 'Montsant', en: '' },
-        { pais: 'mundo', es: 'Penedés', en: '' },
-        { pais: 'mundo', es: 'Rias Baixas', en: '' },
-        { pais: 'mundo', es: 'Valdeorras', en: '' },
-        { pais: 'mundo', es: 'Montilla - Moriles', en: '' },
-        { pais: 'mundo', es: 'Jerez de la Frontera', en: '' },
-        { pais: 'mundo', es: 'Sanlúcar de Barrameda', en: '' },
-        { pais: 'mundo', es: 'Tenerife', en: '' },
-        { pais: 'mundo', es: 'Priorat', en: '' },
-        { pais: 'mundo', es: 'Ribera del Duero', en: '' },
-        { pais: 'mundo', es: 'Sierra de Gredos', en: '' },
-        { pais: 'mundo', es: 'Elqui', en: '' },
-        { pais: 'mundo', es: 'Itata', en: '' },
-        { pais: 'mundo', es: 'Maipo', en: '' },
-        { pais: 'mundo', es: 'Maule', en: '' },
-        { pais: 'mundo', es: 'Madeira', en: '' },
-        { pais: 'mundo', es: 'Oporto', en: '' },
-        { pais: 'mundo', es: 'Valle de Uco', en: '' },
-        { pais: 'mundo', es: 'Luján de Cuyo', en: '' },
-        { pais: 'mundo', es: 'Valles Calchaquíes', en: '' },
-        { pais: 'mundo', es: 'Trevelin', en: '' },
-        { pais: 'argentina', es: 'Buenos Aires', en: 'Buenos Aires' },
-        { pais: 'argentina', es: 'Catamarca', en: 'Catamarca' },
-        { pais: 'argentina', es: 'Chubut', en: 'Chubut' },
-        { pais: 'argentina', es: 'Córdoba', en: 'Córdoba' },
-        { pais: 'argentina', es: 'Jujuy', en: 'Jujuy' },
-        { pais: 'argentina', es: 'La Rioja', en: 'La Rioja' },
-        { pais: 'argentina', es: 'Mendoza', en: 'Mendoza' },
-        { pais: 'argentina', es: 'Río Negro', en: 'Río Negro' },
-        { pais: 'argentina', es: 'Salta', en: 'Salta' },
-        { pais: 'argentina', es: 'San Juan', en: 'San Juan' },
+        { visible: false, pais: 'mundo', es: 'Borgoña', en: 'Burgundy' },
+        { visible: false, pais: 'mundo', es: 'Burdeos', en: 'Bordeaux' },
+        { visible: false, pais: 'mundo', es: 'Champagne', en: 'Champagne' },
+        { visible: false, pais: 'mundo', es: 'Toscana', en: 'Tuscany' },
+        { visible: false, pais: 'mundo', es: 'Piemonte', en: '' },
+        { visible: false, pais: 'mundo', es: 'Mosel', en: '' },
+        { visible: false, pais: 'mundo', es: 'Malborough', en: '' },
+        { visible: false, pais: 'mundo', es: 'Montsant', en: '' },
+        { visible: false, pais: 'mundo', es: 'Penedés', en: '' },
+        { visible: false, pais: 'mundo', es: 'Rias Baixas', en: '' },
+        { visible: false, pais: 'mundo', es: 'Valdeorras', en: '' },
+        { visible: false, pais: 'mundo', es: 'Montilla - Moriles', en: '' },
+        { visible: false, pais: 'mundo', es: 'Jerez de la Frontera', en: '' },
+        { visible: false, pais: 'mundo', es: 'Sanlúcar de Barrameda', en: '' },
+        { visible: false, pais: 'mundo', es: 'Tenerife', en: '' },
+        { visible: false, pais: 'mundo', es: 'Priorat', en: '' },
+        { visible: false, pais: 'mundo', es: 'Ribera del Duero', en: '' },
+        { visible: false, pais: 'mundo', es: 'Sierra de Gredos', en: '' },
+        { visible: false, pais: 'mundo', es: 'Elqui', en: '' },
+        { visible: false, pais: 'mundo', es: 'Itata', en: '' },
+        { visible: false, pais: 'mundo', es: 'Maipo', en: '' },
+        { visible: false, pais: 'mundo', es: 'Maule', en: '' },
+        { visible: false, pais: 'mundo', es: 'Madeira', en: '' },
+        { visible: false, pais: 'mundo', es: 'Oporto', en: '' },
+        { visible: false, pais: 'mundo', es: 'Valle de Uco', en: '' },
+        { visible: false, pais: 'mundo', es: 'Luján de Cuyo', en: '' },
+        { visible: false, pais: 'mundo', es: 'Valles Calchaquíes', en: '' },
+        { visible: false, pais: 'mundo', es: 'Trevelin', en: '' },
+        { visible: false, pais: 'argentina', es: 'Buenos Aires', en: 'Buenos Aires' },
+        { visible: false, pais: 'argentina', es: 'Catamarca', en: 'Catamarca' },
+        { visible: false, pais: 'argentina', es: 'Chubut', en: 'Chubut' },
+        { visible: false, pais: 'argentina', es: 'Córdoba', en: 'Córdoba' },
+        { visible: false, pais: 'argentina', es: 'Jujuy', en: 'Jujuy' },
+        { visible: false, pais: 'argentina', es: 'La Rioja', en: 'La Rioja' },
+        { visible: false, pais: 'argentina', es: 'Mendoza', en: 'Mendoza' },
+        { visible: false, pais: 'argentina', es: 'Río Negro', en: 'Río Negro' },
+        { visible: false, pais: 'argentina', es: 'Salta', en: 'Salta' },
+        { visible: false, pais: 'argentina', es: 'San Juan', en: 'San Juan' },
     ]
 
     return (
@@ -104,15 +106,21 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
                                 if(reg.pais === pais || pais === 'copa') {
                                     return (
                                         contenido.map(prod => (
-                                        <div key={prod.id}>  
+                                        <>  
                                             {
                                                 (pais === 'copa') ? (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true) ? (
+                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true && reg.visible === false) ? (
+                                                        <>
                                                         <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
+                                                        {reg.visible = true}
+                                                        </>
                                                     ) : null
                                                 ) : (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo) ? (
-                                                        <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
+                                                    (reg.es === prod.region && prod.tipo === cat.codigo && reg.visible === false) ? (
+                                                        <>
+                                                            <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
+                                                            { reg.visible = true }
+                                                        </>
                                                     ) : null
                                                 )
                                             }
@@ -140,7 +148,7 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
                                                     ) : null
                                                 ) : null
                                             }
-                                        </div>
+                                        </>
                                         )))
                                     }
                             })

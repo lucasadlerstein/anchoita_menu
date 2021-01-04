@@ -8,6 +8,7 @@ import seleccionContext from '../../context/seleccion/seleccionContext';
 import Carrito from '../../components/Carrito';
 import clienteAxios from '../../config/axios';
 import styled from '@emotion/styled';
+import Head from 'next/head';
 
 const Menu = () => {
 
@@ -97,64 +98,97 @@ const Menu = () => {
     }
 
     return (
-        <Container className="py-5r">
-            <Row>
-                <Col xs={buscador ? 7 : 2} className={`my-auto ${buscador ? 'text-center' : 'text-right'}`}>
-                    { buscador ? (
-                        <BuscadorInput type="text" autoFocus value={busqueda} onChange={handleChangeBusqueda} />
-                    ) : null }
-                    {
-                        buscador ? (
-                            <a onClick={() => {
-                                setBuscador(!buscador)
-                                cambiarBusqueda('')
-                            }}>X</a>
-                        ) : (
-                            <a onClick={() => setBuscador(!buscador)} ><img src="img/search-icon.png" alt="Buscar en el menú" style={{width: '2rem'}} /></a>
-                        )
-                    }
-                </Col>
-                <Col xs={buscador ? 3 : 8} className={`text-center ${buscador ? 'px-0' : ''}`}>
-                    <img src="img/logo-menu.png" alt="Logo Anchoita" style={{maxHeight: '4rem'}} />
-                </Col>
-                <Col xs={2} className={`my-auto text-left`}>
-                    <a onClick={() => visibilidadCarrito(carrito)}>
-                        <img  src="img/pedido-icon.png" alt="Ver mi pedido" style={{width: '2rem'}} />
-                    </a>
-                </Col>
-            </Row>
+        <>
+            <Head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                <title>Anchoita | Menú Digital</title>
+                <meta name="description" content="" />
+                <meta name="keywords" content="menu, anchoita, comida, vinos, Anchoita Argentina, Juan Ramírez de Velasco 1520" />
+                <link
+                    rel="preload"
+                    href="/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf"
+                    as="font"
+                    crossOrigin=""
+                />
+                <link
+                    rel="preload"
+                    href="/fonts/RobotoCondensed/RobotoCondensed-Bold.ttf"
+                    as="font"
+                    crossOrigin=""
+                />
+                <link
+                    rel="preload"
+                    href="/fonts/Henderson/Henderson-Sans-Regular.otf"
+                    as="font"
+                    crossOrigin=""
+                />
+                <link
+                    rel="preload"
+                    href="/fonts/Henderson/Henderson-Sans-Bold.otf"
+                    as="font"
+                    crossOrigin=""
+                />
+            </Head>
+            <Container className="py-5r">
+                <Row>
+                    <Col xs={buscador ? 7 : 2} className={`my-auto ${buscador ? 'text-center' : 'text-right'}`}>
+                        { buscador ? (
+                            <BuscadorInput type="text" autoFocus value={busqueda} onChange={handleChangeBusqueda} />
+                        ) : null }
+                        {
+                            buscador ? (
+                                <a onClick={() => {
+                                    setBuscador(!buscador)
+                                    cambiarBusqueda('')
+                                }}>X</a>
+                            ) : (
+                                <a onClick={() => setBuscador(!buscador)} ><img src="img/search-icon.png" alt="Buscar en el menú" style={{width: '2rem'}} /></a>
+                            )
+                        }
+                    </Col>
+                    <Col xs={buscador ? 3 : 8} className={`text-center ${buscador ? 'px-0' : ''}`}>
+                        <img src="img/logo-menu.png" alt="Logo Anchoita" style={{maxHeight: '4rem'}} />
+                    </Col>
+                    <Col xs={2} className={`my-auto text-left`}>
+                        <a onClick={() => visibilidadCarrito(carrito)}>
+                            <img  src="img/pedido-icon.png" alt="Ver mi pedido" style={{width: '2rem'}} />
+                        </a>
+                    </Col>
+                </Row>
 
-            <NavegacionMenu />
+                <NavegacionMenu />
 
-            { (etapa !== null) ? <EleccionContenido /> : null }
-            
-            {
-                (etapa === 'comidas' && v_tipo !== null) ? (
-                    <MenuContenido contenido={platos} tipo={v_tipo} categorias={cPlatos} etapa={etapa} />
-                ) : null
-            }
+                { (etapa !== null) ? <EleccionContenido /> : null }
+                
+                {
+                    (etapa === 'comidas' && v_tipo !== null) ? (
+                        <MenuContenido contenido={platos} tipo={v_tipo} categorias={cPlatos} etapa={etapa} />
+                    ) : null
+                }
 
-            {
-                (etapa === 'vinos' && v_tipo !== null && v_pais !== null) ? (
-                    <VinosContenido contenido={vinos} tipo={v_tipo} pais={v_pais} categorias={cVinos} etapa={etapa} />
-                ) : null
-            }
+                {
+                    (etapa === 'vinos' && v_tipo !== null && v_pais !== null) ? (
+                        <VinosContenido contenido={vinos} tipo={v_tipo} pais={v_pais} categorias={cVinos} etapa={etapa} />
+                    ) : null
+                }
 
-            {
-                (etapa === 'cocteleria' && v_tipo !== null) ? (
-                    <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cCocteleria} etapa={etapa} />
-                ) : null
-            }
+                {
+                    (etapa === 'cocteleria' && v_tipo !== null) ? (
+                        <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cCocteleria} etapa={etapa} />
+                    ) : null
+                }
 
-            {
-                (etapa === 'bebidas') ? (
-                    <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cBebidas} etapa={etapa} />
-                ) : null
-            }
+                {
+                    (etapa === 'bebidas') ? (
+                        <MenuContenido contenido={cocteles} tipo={v_tipo} categorias={cBebidas} etapa={etapa} />
+                    ) : null
+                }
 
-            { (carrito) ? <Carrito /> : null }
+                { (carrito) ? <Carrito /> : null }
 
-        </Container>
+            </Container>
+        </>
     );
 }
  

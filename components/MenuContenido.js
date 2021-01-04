@@ -4,7 +4,7 @@ import ItemIndividual from './ItemIndividual';
 
 const Fondo = styled.div`
     background-color: white;
-    padding: 4rem 0;
+    padding: 1rem 0;
     position: relative;
 `;
 const VolverBtn = styled.button`
@@ -29,9 +29,12 @@ const Provincia = styled.p`
     text-transform: uppercase;
     color: var(--colorNaranja);
     padding-left: 3rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: .5rem;
+    font-weight: bold;
+    margin-top: 3rem;
 `;
+
 const Uva = styled.p`
     color: black;
     padding-left: 4.2rem;

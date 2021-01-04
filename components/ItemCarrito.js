@@ -11,9 +11,8 @@ const Nombre = styled.p`
 const Cantidad = styled.p`
     color: var(--colorAzul);
     margin: auto .8rem;
-    font-weight: bold;
-    font-size: 2rem;
-
+    /* font-weight: bold; */
+    font-size: 1.8rem;
 `;
 
 const ColumnaCantidad = styled(Col)`
