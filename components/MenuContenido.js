@@ -65,7 +65,7 @@ const MenuContenido = ({contenido, tipo, categorias, etapa}) => {
                         <Provincia id={item.codigo}>{item.nombre}</Provincia>
                         {
                             contenido.map(prod => (
-                                (prod.categoria === item.codigo) ? (
+                                (prod.categoria === item.codigo && prod.visible === true) ? (
                                     <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                 ) : null
                             ))

@@ -45,7 +45,7 @@ const Menu = () => {
         { nombre: 'Con la mano', codigo: 'mano' },
         { nombre: 'Quesos', codigo: 'quesos' },
         { nombre: 'Crudas', codigo: 'crudas' },
-        { nombre: 'Charcutería de elaboración propia', codigo: 'charculateria' },
+        { nombre: 'Charcutería de elaboración propia', codigo: 'charcuteria' },
         { nombre: 'Vegetales', codigo: 'vegetales' },
         { nombre: 'De río y mar argentinos', codigo: 'rio-mar' },
         { nombre: 'Huevos', codigo: 'huevos' },
@@ -86,7 +86,7 @@ const Menu = () => {
         border-bottom: 1px solid white;
         color: white;
         background-color: transparent;
-
+        width: calc(98% - 1.2rem);
         &:focus {
             outline: none;
         }
@@ -99,7 +99,7 @@ const Menu = () => {
     return (
         <Container className="py-5r">
             <Row>
-                <Col xs={buscador ? 7 : 2} className="my-auto text-right">
+                <Col xs={buscador ? 7 : 2} className={`my-auto ${buscador ? 'text-center' : 'text-right'}`}>
                     { buscador ? (
                         <BuscadorInput type="text" autoFocus value={busqueda} onChange={handleChangeBusqueda} />
                     ) : null }
