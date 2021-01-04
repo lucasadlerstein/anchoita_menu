@@ -2,7 +2,7 @@ import axios from 'axios';
 // require('dotenv').config()
 
 const clienteAxios = axios.create({
-    baseURL: `http://localhost:4000/api`
+    baseURL: `https://anchapi.infinidad.com.ar/api`
 });
 
 export default clienteAxios;
