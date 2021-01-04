@@ -42,7 +42,7 @@ const Cerrar = styled.button`
 
 const Categoria = styled.h5`
     text-transform: uppercase;
-    color: var(--colorAzul);
+    color: var(--colorNaranja);
     font-weight: bold;
     font-size: 1.8rem;
     padding-top: 1rem;

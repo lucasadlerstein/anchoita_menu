@@ -19,6 +19,16 @@ const Item = styled.button`
     &:focus {
         outline: none;
     }
+    @media (min-width: 400px){
+        font-size: 1.3rem;
+    }
+    @media (min-width: 440px){
+        font-size: 1.5rem;
+    }
+    @media (min-width: 460px){
+        font-size: 1.6rem;
+    }
+
 `;
 
 const NavSecundario = styled(Nav)`

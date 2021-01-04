@@ -42,6 +42,7 @@ const Provincia = styled.p`
     margin: 0 0 1rem 0;
     &:before {
         content: '•';
+        margin: auto;
         padding-right: .5rem;
         vertical-align: text-bottom;
     }
