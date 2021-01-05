@@ -27,12 +27,15 @@ const Menu = ({t}) => {
     const [stickyHeader, setStickyHeader] = useState(false)
     
     function chequearScroll() {
+        console.log(window.pageYOffset);
         if (!stickyHeader && window.pageYOffset > 120){
             setStickyHeader(true)
+            document.querySelector('body').classList.remove('mt-0');
             document.querySelector('body').classList.add('mt-10r');
         } else if (stickyHeader && window.pageYOffset <= 120){
             setStickyHeader(false)
             document.querySelector('body').classList.remove('mt-10r');
+            document.querySelector('body').classList.add('mt-0');
         }  
     }
 
@@ -192,9 +195,7 @@ const Menu = ({t}) => {
                     <Col xs={2} className={`my-auto text-left`}>
                         <a onClick={() => visibilidadCarrito(carrito)} style={{position: 'relative'}}>
                             <img  src="img/pedido-icon.png" alt={t('Alternativos.VerWish')} style={{width: '2rem'}} className={shake ? 'shake-and-pop' : null} />
-                            {
-                                (productosCarrito.length !== 0) ? <Notificacion></Notificacion> : null
-                            }
+                            { (productosCarrito.length !== 0) ? <Notificacion></Notificacion> : null }
                         </a>
                     </Col>
                 </RowPersonalizada>

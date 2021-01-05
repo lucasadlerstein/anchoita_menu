@@ -46,7 +46,6 @@
 }
 
 
-
 html {
   box-sizing: 	border-box;
   font-size: 62.5%;
@@ -111,7 +110,7 @@ ul {
 
 .mt-10r {
   transition: all .5s ease;
-  margin-top: 13rem!important;
+  margin-top: 12.5rem!important;
 }
 
 
