@@ -39,7 +39,7 @@ const Menu = ({t}) => {
         }  
     }
 
-    if(window !== undefined && window !== null) {
+    if(typeof window !== "undefined") {
         window.addEventListener('scroll', chequearScroll)
     }
 
@@ -246,12 +246,8 @@ const Menu = ({t}) => {
     );
 }
 
-Menu.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-});
-
-Menu.propTypes = {
-    t: PropTypes.func.isRequired,
-}
+// Menu.getInitialProps = async () => ({
+//     namespacesRequired: ['common'],
+// });
  
 export default withTranslation('common')(Menu);

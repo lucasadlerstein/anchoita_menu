@@ -25,7 +25,8 @@ const ScrollTop = () => {
             setMostrarScroll(false)    
         }  
     }
-    if(window !== undefined && window !== null) {
+
+    if(typeof window !== "undefined") {
         window.addEventListener('scroll', chequearScroll)
     }
 
