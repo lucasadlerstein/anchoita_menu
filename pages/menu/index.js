@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
 const Menu = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
-    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda, shake, productosCarrito } = SeleccionContext;
+    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda, shake, productosCarrito, cambiarSeleccion } = SeleccionContext;
 
     const [buscador, setBuscador] = useState(false);
 
@@ -39,7 +39,9 @@ const Menu = ({t}) => {
         }  
     }
 
-    window.addEventListener('scroll', chequearScroll)
+    if(window !== undefined && window !== null) {
+        window.addEventListener('scroll', chequearScroll)
+    }
 
     useEffect(() => {
         if(localStorage.getItem('carrito')) {
@@ -58,7 +60,13 @@ const Menu = ({t}) => {
                 .then(resp => { setVinos(resp.data.vinos); })
                 .catch(err => { console.log('V-404-V'); })
         }
+        function llenarStates() {
+            if(etapa === '' || etapa === null) {
+                cambiarSeleccion('etapa', 'comidas');
+            }
+        }
         traerInfo();
+        llenarStates();
         // eslint-disable-next-line
     }, [])
 
