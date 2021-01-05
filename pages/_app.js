@@ -2,6 +2,8 @@ import SeleccionState from '../context/seleccion/seleccionState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css'
 
+import { appWithTranslation } from '../i18n'
+
 function MyApp({ Component, pageProps }) {
   return (
     <SeleccionState>
@@ -10,4 +12,4 @@ function MyApp({ Component, pageProps }) {
   ) 
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

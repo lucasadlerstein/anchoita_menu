@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import {i18n, withTranslation} from '../i18n';
+import PropTypes from 'prop-types'
 
 const Logo = styled.img`
 
@@ -30,7 +32,20 @@ const ListaSubItems = styled.ul`
   }
 `;
 
-const Inicio = () => {
+const BotonIdioma = styled.button`
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  margin: 10rem auto 0 auto;
+  text-align: center;
+  color: white;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Inicio = ({t}) => {
 
   const SeleccionContext = useContext(seleccionContext);
   const { cambiarSeleccion, etapa } = SeleccionContext;
@@ -53,9 +68,9 @@ const Inicio = () => {
     <Head>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <title>Anchoita | Menú Digital</title>
-      <meta name="description" content="" />
-      <meta name="keywords" content="menu, anchoita, comida, vinos, Anchoita Argentina, Juan Ramírez de Velasco 1520" />
+      <title>{t('SEO.Titulo')}</title>
+      <meta name="description" content={t('SEO.Descripcion')} />
+      <meta name="keywords" content={t('SEO.Keywords')} />
       {/* <meta name="robots" content="index, follow" /> */}
       <link
           rel="preload"
@@ -88,11 +103,11 @@ const Inicio = () => {
         <li><span>01. </span>
           <a
             onClick={() => clickEtapaInicial('comidas')}
-          >Comida</a>
+          >{t('Secciones.Comidas')}</a>
         </li>
         <li><span>02. </span>
           <a onClick={etapa === 'vinos' ? () => cambiarSeleccion('etapa', null) : () => cambiarSeleccion('etapa', 'vinos')}>
-            Vinos
+          {t('Secciones.Vinos')}
           </a>
           {
             etapa === 'vinos' ? (
@@ -101,21 +116,21 @@ const Inicio = () => {
                   <a
                     onClick={() => clickVinosInicial('copa')}
                   >
-                    Por copa
+                    {t('Secciones.Lugares.Copa')}
                   </a>
                 </li>
                 <li>
                   <a
                     onClick={() => clickVinosInicial('argentina')}
                   >
-                    Argentina
+                    {t('Secciones.Lugares.Argentina')}
                   </a>
                 </li>
                 <li>
                   <a
                     onClick={() => clickVinosInicial('mundo')}
                   >
-                    Del mundo
+                    {t('Secciones.Lugares.Mundo')}
                   </a>
                 </li>
               </ListaSubItems>
@@ -127,20 +142,31 @@ const Inicio = () => {
           <a
             onClick={() => clickEtapaInicial('cocteleria')}
           >
-            Coctelería
+            {t('Secciones.Cocteleria')}
           </a>
         </li>
         <li><span>04. </span>
           <a
             onClick={() => clickEtapaInicial('bebidas')}
           >
-            Bebidas
+            {t('Secciones.Bebidas')}
           </a>
         </li>
       </Lista>
+      <BotonIdioma
+        onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
+      >{i18n.language === 'en' ? 'MENÚ EN ESPAÑOL' : 'ENGLISH MENU'}</BotonIdioma>
     </div>
     </>
   );
 }
+
+Inicio.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+});
+
+Inicio.propTypes = {
+  t: PropTypes.func.isRequired,
+}
  
-export default Inicio;
+export default withTranslation('common')(Inicio);

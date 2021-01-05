@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
+import {withTranslation} from '../i18n';
 
 const Nav = styled.div`
     display: inline-block;
@@ -25,9 +26,6 @@ const Item = styled.button`
     @media (min-width: 440px){
         font-size: 1.5rem;
     }
-    @media (min-width: 460px){
-        font-size: 1.6rem;
-    }
 
 `;
 
@@ -46,30 +44,30 @@ const ItemSec = styled(Item)`
     } */
 `;
 
-const NavegacionMenu = () => {
+const NavegacionMenu = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
     const { cambiarSeleccion, etapa, v_pais, v_tipo } = SeleccionContext;
     
     return (
-        <div className="py-5 mx-auto text-center">
+        <div className="pb-5 mx-auto text-center">
             <Nav>
                 <Item
                     onClick={() => cambiarSeleccion('etapa', 'comidas')}
                     className={etapa === 'comidas' ? 'activo' : null}
-                >Comidas</Item>
+                >{t('Secciones.Comidas')}</Item>
                 <Item
                     onClick={() => cambiarSeleccion('etapa', 'vinos')}
                     className={etapa === 'vinos' ? 'activo' : null}
-                >Vinos</Item>
+                >{t('Secciones.Vinos')}</Item>
                 <Item
                     onClick={() => cambiarSeleccion('etapa', 'cocteleria')}
                     className={etapa === 'cocteleria' ? 'activo' : null}
-                >Coctelería</Item>
+                >{t('Secciones.Cocteleria')}</Item>
                 <Item
                     onClick={() => cambiarSeleccion('etapa', 'bebidas')}
                     className={etapa === 'bebidas' ? 'activo' : null}
-                >Bebidas</Item>
+                >{t('Secciones.Bebidas')}</Item>
             </Nav>
 
             {
@@ -78,15 +76,15 @@ const NavegacionMenu = () => {
                         <Item
                             onClick={() => cambiarSeleccion('v_pais', 'copa')}
                             className={v_pais === 'copa' ? 'activo' : null}
-                        >Por copa</Item>
+                        >{t('Secciones.Lugares.Copa')}</Item>
                         <Item
                             onClick={() => cambiarSeleccion('v_pais', 'argentina')}
                             className={v_pais === 'argentina' ? 'activo' : null}
-                        >Argentina</Item>
+                        >{t('Secciones.Lugares.Argentina')}</Item>
                         <Item
                             onClick={() => cambiarSeleccion('v_pais', 'mundo')}
                             className={v_pais === 'mundo' ? 'activo' : null}
-                        >Del mundo</Item>
+                        >{t('Secciones.Lugares.Mundo')}</Item>
                     </NavSecundario>
                 ) : null
             }
@@ -94,4 +92,4 @@ const NavegacionMenu = () => {
     );
 }
  
-export default NavegacionMenu;
+export default withTranslation('common')(NavegacionMenu);

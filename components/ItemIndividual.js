@@ -4,7 +4,7 @@ import {Row, Col} from 'reactstrap';
 import seleccionContext from '../context/seleccion/seleccionContext';
 
 const Item = styled(Row)`
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
     /* padding: 0 1rem; */
     color: var(--colorAzul);

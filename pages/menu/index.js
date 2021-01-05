@@ -9,8 +9,12 @@ import Carrito from '../../components/Carrito';
 import clienteAxios from '../../config/axios';
 import styled from '@emotion/styled';
 import Head from 'next/head';
+import {withTranslation} from '../../i18n';
+import Link from 'next/link';
+import ScrollTop from '../../components/ScrollTop';
+import PropTypes from 'prop-types'
 
-const Menu = () => {
+const Menu = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
     const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda } = SeleccionContext;
@@ -20,6 +24,19 @@ const Menu = () => {
     const [vinos, setVinos] = useState([]);
     const [cocteles, setCocteles] = useState([]);
     const [platos, setPlatos] = useState([]);
+    const [stickyHeader, setStickyHeader] = useState(false)
+    
+    function chequearScroll() {
+        if (!stickyHeader && window.pageYOffset > 400){
+            setStickyHeader(true)
+            document.querySelector('body').classList.add('mt-10r');
+        } else if (stickyHeader && window.pageYOffset <= 400){
+            setStickyHeader(false)
+            document.querySelector('body').classList.remove('mt-10r');
+        }  
+    }
+
+    window.addEventListener('scroll', chequearScroll)
 
     useEffect(() => {
         if(localStorage.getItem('carrito')) {
@@ -43,43 +60,43 @@ const Menu = () => {
     }, [])
 
     const cPlatos = [
-        { nombre: 'Con la mano', codigo: 'mano' },
-        { nombre: 'Quesos', codigo: 'quesos' },
-        { nombre: 'Crudas', codigo: 'crudas' },
-        { nombre: 'Charcutería de elaboración propia', codigo: 'charcuteria' },
-        { nombre: 'Vegetales', codigo: 'vegetales' },
-        { nombre: 'De río y mar argentinos', codigo: 'rio-mar' },
-        { nombre: 'Huevos', codigo: 'huevos' },
-        { nombre: 'Chuletones', codigo: 'chuletones' },
-        { nombre: 'Carnes', codigo: 'carnes' },
-        { nombre: 'Pastas', codigo: 'pastas' },
-        { nombre: 'Postres', codigo: 'postres' },
-        { nombre: 'Helados', codigo: 'helados' },
+        { nombre: t('CatPlatos.Mano'), codigo: 'mano' },
+        { nombre: t('CatPlatos.Quesos'), codigo: 'quesos' },
+        { nombre: t('CatPlatos.Crudas'), codigo: 'crudas' },
+        { nombre: t('CatPlatos.Charcuteria'), codigo: 'charcuteria' },
+        { nombre: t('CatPlatos.Vegetales'), codigo: 'vegetales' },
+        { nombre: t('CatPlatos.RioMar'), codigo: 'rio-mar' },
+        { nombre: t('CatPlatos.Huevos'), codigo: 'huevos' },
+        { nombre: t('CatPlatos.Chuletones'), codigo: 'chuletones' },
+        { nombre: t('CatPlatos.Carnes'), codigo: 'carnes' },
+        { nombre: t('CatPlatos.Pastas'), codigo: 'pastas' },
+        { nombre: t('CatPlatos.Postres'), codigo: 'postres' },
+        { nombre: t('CatPlatos.Helados'), codigo: 'helados' },
     ]
 
     const cVinos = [ 
-        { nombre: 'Espumoso', codigo: 'espumoso' },
-        { nombre: 'Blanco', codigo: 'blanco' },
-        { nombre: 'Naranjo', codigo: 'naranjo' },
-        { nombre: 'Rosado', codigo: 'rosado' },
-        { nombre: 'Tinto', codigo: 'tinto' },
-        { nombre: 'Dulce', codigo: 'dulce' },
-        { nombre: 'Fortificado seco', codigo: 'fort-seco' },
-        { nombre: 'Fortificado dulce', codigo: 'fort-dulce' },
-        { nombre: 'Otros tamaños', codigo: 'tamanos' },
+        { nombre: t('CatVinos.Espumoso'), codigo: 'espumoso' },
+        { nombre: t('CatVinos.Blanco'), codigo: 'blanco' },
+        { nombre: t('CatVinos.Naranjo'), codigo: 'naranjo' },
+        { nombre: t('CatVinos.Rosado'), codigo: 'rosado' },
+        { nombre: t('CatVinos.Tinto'), codigo: 'tinto' },
+        { nombre: t('CatVinos.Dulce'), codigo: 'dulce' },
+        { nombre: t('CatVinos.FortificadoSeco'), codigo: 'fort-seco' },
+        { nombre: t('CatVinos.FortificadoDulce'), codigo: 'fort-dulce' },
+        { nombre: t('CatVinos.OtrosTamanos'), codigo: 'tamanos' },
     ]
 
     const cCocteleria = [ 
-        { nombre: 'Cócteles', codigo: 'Cócteles' },
-        { nombre: 'Refrescos', codigo: 'Refrescos' },
-        { nombre: 'Cervezas', codigo: 'Cervezas' },
-        { nombre: 'Sidras', codigo: 'Sidras' },
-        { nombre: 'Destilados', codigo: 'Destilados' },
+        { nombre: t('CatCocteleria.Cocteles'), codigo: 'Cócteles' },
+        { nombre: t('CatCocteleria.Refrescos'), codigo: 'Refrescos' },
+        { nombre: t('CatCocteleria.Cervezas'), codigo: 'Cervezas' },
+        { nombre: t('CatCocteleria.Sidras'), codigo: 'Sidras' },
+        { nombre: t('CatCocteleria.Destilados'), codigo: 'Destilados' },
         // { nombre: 'Bebidas', codigo: 'Bebidas' },
     ]
 
     const cBebidas = [
-        { nombre: 'Bebidas', codigo: 'Bebidas' },
+        { nombre: t('CatBebidas.Bebidas'), codigo: 'Bebidas' },
     ]
 
     const BuscadorInput = styled.input`
@@ -93,6 +110,14 @@ const Menu = () => {
         }
     `;
 
+    const RowPersonalizada = styled(Row)`
+        background-color: var(--colorAzul);
+        position: sticky;
+        top: 3rem;
+        z-index: 99999;
+        padding: 2rem 0;
+    `;
+
     const handleChangeBusqueda = e => {
         cambiarBusqueda(e.target.value)
     }
@@ -102,9 +127,9 @@ const Menu = () => {
             <Head>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Anchoita | Menú Digital</title>
-                <meta name="description" content="" />
-                <meta name="keywords" content="menu, anchoita, comida, vinos, Anchoita Argentina, Juan Ramírez de Velasco 1520" />
+                <title>{t('SEO.Titulo')}</title>
+                <meta name="description" content={t('SEO.Descripcion')} />
+                <meta name="keywords" content={t('SEO.Keywords')} />
                 <link
                     rel="preload"
                     href="/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf"
@@ -131,7 +156,7 @@ const Menu = () => {
                 />
             </Head>
             <Container className="py-5r">
-                <Row>
+                <RowPersonalizada>
                     <Col xs={buscador ? 7 : 2} className={`my-auto ${buscador ? 'text-center' : 'text-right'}`}>
                         { buscador ? (
                             <BuscadorInput type="text" autoFocus value={busqueda} onChange={handleChangeBusqueda} />
@@ -143,23 +168,29 @@ const Menu = () => {
                                     cambiarBusqueda('')
                                 }}>X</a>
                             ) : (
-                                <a onClick={() => setBuscador(!buscador)} ><img src="img/search-icon.png" alt="Buscar en el menú" style={{width: '2rem'}} /></a>
+                                <a onClick={() => setBuscador(!buscador)} ><img src="img/search-icon.png" alt={t('Alternativos.Buscar')} style={{width: '2rem'}} /></a>
                             )
                         }
                     </Col>
                     <Col xs={buscador ? 3 : 8} className={`text-center ${buscador ? 'px-0' : ''}`}>
-                        <img src="img/logo-menu.png" alt="Logo Anchoita" style={{maxHeight: '4rem'}} />
+                        <Link href="/">
+                            <a>
+                                <img src="img/logo-menu.png" alt="Logo Anchoita" style={{maxHeight: '4rem'}} />
+                            </a>
+                        </Link>
                     </Col>
                     <Col xs={2} className={`my-auto text-left`}>
                         <a onClick={() => visibilidadCarrito(carrito)}>
-                            <img  src="img/pedido-icon.png" alt="Ver mi pedido" style={{width: '2rem'}} />
+                            <img  src="img/pedido-icon.png" alt={t('Alternativos.VerWish')} style={{width: '2rem'}} />
                         </a>
                     </Col>
-                </Row>
+                </RowPersonalizada>
 
                 <NavegacionMenu />
 
-                { (etapa !== null) ? <EleccionContenido /> : null }
+                { (etapa !== null) ? <EleccionContenido 
+                    cPlatos={cPlatos} cCocteleria={cCocteleria} cVinos={cVinos} cBebidas={cBebidas}
+                /> : null }
                 
                 {
                     (etapa === 'comidas' && v_tipo !== null) ? (
@@ -187,9 +218,18 @@ const Menu = () => {
 
                 { (carrito) ? <Carrito /> : null }
 
+                <ScrollTop />
             </Container>
         </>
     );
 }
+
+Menu.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+});
+
+Menu.propTypes = {
+    t: PropTypes.func.isRequired,
+}
  
-export default Menu;
+export default withTranslation('common')(Menu);

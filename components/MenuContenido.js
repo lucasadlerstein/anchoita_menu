@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import styled from '@emotion/styled';
 import ItemIndividual from './ItemIndividual';
+import seleccionContext from '../context/seleccion/seleccionContext';
+import {withTranslation} from '../i18n';
 
 const Fondo = styled.div`
     background-color: white;
@@ -48,17 +50,29 @@ const Uva = styled.p`
     }
 `;
 
-const MenuContenido = ({contenido, tipo, categorias, etapa}) => {
+const MenuContenido = ({contenido, tipo, categorias, etapa, t}) => {
 
     useEffect(() => {
         window.location.href = `#${tipo}`;
         // eslint-disable-next-line
     }, [])
 
+    const SeleccionContext = useContext(seleccionContext);
+    const {cambiarSeleccion} = SeleccionContext;
+
     return (
         <Fondo>
-            {/* <VolverBtn>VOLVER</VolverBtn> */}
-
+            {
+                (etapa === 'bebidas') ? (
+                    <VolverBtn
+                        onClick={() => cambiarSeleccion('etapa', null)}
+                    >{t('Alternativos.Volver')}</VolverBtn>
+                ) : (
+                    <VolverBtn
+                        onClick={() => cambiarSeleccion('v_tipo', null)}
+                    >{t('Alternativos.Volver')}</VolverBtn>
+                )
+            }
             {/* <Provincia>Salta</Provincia> */}
             {/* <Uva>Chardonnay</Uva> */}
 
@@ -80,4 +94,4 @@ const MenuContenido = ({contenido, tipo, categorias, etapa}) => {
     );
 }
  
-export default MenuContenido;
+export default withTranslation('common')(MenuContenido);

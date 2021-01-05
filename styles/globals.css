@@ -50,7 +50,7 @@
 html {
   box-sizing: 	border-box;
   font-size: 62.5%;
-  background-color: var(--colorNaranja);
+  background-color: #0E3453;
   scroll-behavior: smooth;
 }
 
@@ -107,4 +107,8 @@ ul {
 
 .d-block {
   display: block;
+}
+
+.mt-10r {
+  margin-top: 16rem!important;
 }

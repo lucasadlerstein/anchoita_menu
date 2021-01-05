@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import styled from '@emotion/styled';
 import ItemIndividual from './ItemIndividual';
+import seleccionContext from '../context/seleccion/seleccionContext';
+import {withTranslation} from '../i18n';
 
 const Fondo = styled.div`
     background-color: white;
@@ -42,13 +44,13 @@ const Provincia = styled.p`
     margin: 0 0 1rem 0;
     &:before {
         content: '•';
-        margin: auto;
+        padding-top: 1rem;
         padding-right: .5rem;
         vertical-align: text-bottom;
     }
 `;
 
-const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
+const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
     
     useEffect(() => {
         window.location.href = `#${tipo}`;
@@ -96,8 +98,14 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
         { visible: false, pais: 'argentina', es: 'San Juan', en: 'San Juan' },
     ]
 
+    const SeleccionContext = useContext(seleccionContext);
+    const {cambiarSeleccion} = SeleccionContext;
+
     return (
         <Fondo>
+            <VolverBtn
+                onClick={() => cambiarSeleccion('v_tipo', null)}
+            >{t('Alternativos.Volver')}</VolverBtn>
             {
                 categorias.map((cat, i) => (
                     <div key={cat.codigo}>
@@ -161,4 +169,4 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa}) => {
     );
 }
  
-export default VinosContenido;
+export default withTranslation('common')(VinosContenido);

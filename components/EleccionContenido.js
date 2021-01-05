@@ -22,7 +22,7 @@ const ItemTipo = styled.button`
     }
 `;
 
-const EleccionContenido = () => {
+const EleccionContenido = ({cPlatos, cVinos, cBebidas, cCocteleria}) => {
     const SeleccionContext = useContext(seleccionContext);
     const { cambiarSeleccion, etapa, v_tipo, v_pais } = SeleccionContext;
 
@@ -32,7 +32,8 @@ const EleccionContenido = () => {
             <Fondo>
                 <Row className="text-center">
                     {
-                        categorias[0].opciones.map(cat => (
+                        // categorias[0].opciones.map(cat => (
+                        cPlatos.map(cat => (
                             <Col xs={6} className="mx-auto my-auto py-3" key={cat.codigo}>
                                 <ItemTipo
                                     onClick={() => cambiarSeleccion('v_tipo', cat.codigo)}
@@ -48,7 +49,8 @@ const EleccionContenido = () => {
             <Fondo>
                 <Row className="text-center">
                     {
-                        categorias[1].opciones.map(cat => (
+                        // categorias[1].opciones.map(cat => (
+                        cVinos.map(cat => (
                             <Col xs={6} className="mx-auto my-auto py-3" key={cat.codigo}>
                                 <ItemTipo
                                     onClick={() => cambiarSeleccion('v_tipo', cat.codigo)}
@@ -64,7 +66,8 @@ const EleccionContenido = () => {
             <Fondo>
                 <Row className="text-center">
                     {
-                        categorias[2].opciones.map(cat => (
+                        // categorias[2].opciones.map(cat => (
+                        cCocteleria.map(cat => (
                             <Col xs={6} className="mx-auto my-auto py-3" key={cat.codigo}>
                                 <ItemTipo
                                     onClick={() => cambiarSeleccion('v_tipo', cat.codigo)}
