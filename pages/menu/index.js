@@ -17,7 +17,7 @@ import PropTypes from 'prop-types'
 const Menu = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
-    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda } = SeleccionContext;
+    const { etapa, v_pais, v_tipo, carrito, visibilidadCarrito, getStorage, cambiarBusqueda, busqueda, shake, productosCarrito } = SeleccionContext;
 
     const [buscador, setBuscador] = useState(false);
 
@@ -27,10 +27,10 @@ const Menu = ({t}) => {
     const [stickyHeader, setStickyHeader] = useState(false)
     
     function chequearScroll() {
-        if (!stickyHeader && window.pageYOffset > 400){
+        if (!stickyHeader && window.pageYOffset > 120){
             setStickyHeader(true)
             document.querySelector('body').classList.add('mt-10r');
-        } else if (stickyHeader && window.pageYOffset <= 400){
+        } else if (stickyHeader && window.pageYOffset <= 120){
             setStickyHeader(false)
             document.querySelector('body').classList.remove('mt-10r');
         }  
@@ -114,8 +114,18 @@ const Menu = ({t}) => {
         background-color: var(--colorAzul);
         position: sticky;
         top: 3rem;
-        z-index: 99999;
+        z-index: 998;
         padding: 2rem 0;
+    `;
+
+    const Notificacion = styled.span`
+        position: absolute;
+        top: -0.5rem;
+        right: -0.5rem;
+        padding: .5rem;
+        border-radius: 100%;
+        background: red;
+        color: white;
     `;
 
     const handleChangeBusqueda = e => {
@@ -180,8 +190,11 @@ const Menu = ({t}) => {
                         </Link>
                     </Col>
                     <Col xs={2} className={`my-auto text-left`}>
-                        <a onClick={() => visibilidadCarrito(carrito)}>
-                            <img  src="img/pedido-icon.png" alt={t('Alternativos.VerWish')} style={{width: '2rem'}} />
+                        <a onClick={() => visibilidadCarrito(carrito)} style={{position: 'relative'}}>
+                            <img  src="img/pedido-icon.png" alt={t('Alternativos.VerWish')} style={{width: '2rem'}} className={shake ? 'shake-and-pop' : null} />
+                            {
+                                (productosCarrito.length !== 0) ? <Notificacion></Notificacion> : null
+                            }
                         </a>
                     </Col>
                 </RowPersonalizada>

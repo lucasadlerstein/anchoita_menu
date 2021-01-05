@@ -9,3 +9,4 @@ export const AGREGAR_NUEVO = 'AGREGAR_NUEVO';
 export const GET_STORAGE = 'GET_STORAGE';
 
 export const CAMBIAR_BUSQUEDA = 'CAMBIAR_BUSQUEDA';
+export const CAMBIAR_SHAKE = 'CAMBIAR_SHAKE';

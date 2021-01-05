@@ -1,7 +1,7 @@
 import React, {useReducer, useState, useEffect} from 'react';
 import seleccionContext from './seleccionContext';
 import seleccionReducer from './seleccionReducer';
-import { NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA } from '../../types/index';
+import { NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA, CAMBIAR_SHAKE } from '../../types/index';
 
 const SeleccionState = ({children}) => {
 
@@ -10,6 +10,7 @@ const SeleccionState = ({children}) => {
         v_pais: null,
         v_tipo: null,
         carrito: false,
+        shake: false,
         busqueda: '',
         productosCarrito: [
             // {
@@ -66,6 +67,11 @@ const SeleccionState = ({children}) => {
             payload: info
         })
         actualizarStorage();
+        setTimeout(() => {
+            dispatch({
+                type: CAMBIAR_SHAKE
+            })
+        }, 1200);
     }
 
     const agregarNuevo = (informacion) => {
@@ -90,8 +96,12 @@ const SeleccionState = ({children}) => {
                 payload: informacion
             })
         }
-        
         actualizarStorage();
+        setTimeout(() => {
+            dispatch({
+                type: CAMBIAR_SHAKE
+            })
+        }, 1200);
     }
 
     const actualizarStorage = () => {
@@ -121,6 +131,7 @@ const SeleccionState = ({children}) => {
                 carrito: state.carrito,
                 productosCarrito: state.productosCarrito,
                 busqueda: state.busqueda,
+                shake: state.shake,
                 cambiarSeleccion,
                 visibilidadCarrito,
                 vaciarCarrito,

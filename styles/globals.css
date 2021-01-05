@@ -110,5 +110,13 @@ ul {
 }
 
 .mt-10r {
-  margin-top: 16rem!important;
+  transition: all .5s ease;
+  margin-top: 13rem!important;
+}
+
+
+
+.shake-and-pop {
+	-webkit-animation: wobble-hor-bottom 0.6s both;
+	        animation: wobble-hor-bottom 0.6s both;
 }

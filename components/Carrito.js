@@ -1,7 +1,6 @@
 import React, {useEffect, useContext, useState} from 'react';
 import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
-import {Row, Col} from 'reactstrap';
 import ItemCarrito from './ItemCarrito';
 
 const Fondo = styled.div`
@@ -23,6 +22,7 @@ const Fondo = styled.div`
     transition: all .3s ease;
     padding: 2rem 1.5rem;
     color: var(--colorAzul);
+    z-index: 999;
 `;
 
 const Cerrar = styled.button`

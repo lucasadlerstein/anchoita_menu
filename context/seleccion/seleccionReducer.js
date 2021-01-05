@@ -1,5 +1,5 @@
 import {
-    NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA
+    NUEVA_ETAPA, NUEVA_V_PAIS, NUEVA_V_TIPO, VISIBILIDAD_CARRITO, VACIAR_CARRITO, CAMBIAR_CANTIDAD, AGREGAR_NUEVO, GET_STORAGE, CAMBIAR_BUSQUEDA, CAMBIAR_SHAKE
 } from '../../types/index';
 
 const Reducer = (state, action) => {
@@ -43,7 +43,8 @@ const Reducer = (state, action) => {
         case AGREGAR_NUEVO:
             return {
                 ...state,
-                productosCarrito: [...state.productosCarrito, action.payload]
+                productosCarrito: [...state.productosCarrito, action.payload],
+                shake: true
             }
 
         case CAMBIAR_CANTIDAD:
@@ -61,7 +62,8 @@ const Reducer = (state, action) => {
             })
             return {
                 ...state,
-                productosCarrito: carr
+                productosCarrito: carr,
+                shake: true
             }
 
         case GET_STORAGE:
@@ -74,6 +76,12 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 busqueda: action.payload
+            }
+
+        case CAMBIAR_SHAKE:
+            return {
+                ...state,
+                shake: false
             }
 
         default:

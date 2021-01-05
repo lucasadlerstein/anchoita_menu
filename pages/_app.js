@@ -1,5 +1,6 @@
 import SeleccionState from '../context/seleccion/seleccionState';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/animaciones.css'
 import '../styles/globals.css'
 
 import { appWithTranslation } from '../i18n'
