@@ -44,13 +44,20 @@ const ItemSec = styled(Item)`
     } */
 `;
 
+const Todo = styled.div`
+    background-color: var(--colorAzul);
+    position: sticky;
+    top: 7.8rem;
+    z-index: 998;
+`;
+
 const NavegacionMenu = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
     const { cambiarSeleccion, etapa, v_pais, v_tipo } = SeleccionContext;
     
     return (
-        <div className="pb-5 mx-auto text-center">
+        <Todo className="pb-5 mx-auto text-center">
             <Nav>
                 <Item
                     onClick={() => cambiarSeleccion('etapa', 'comidas')}
@@ -88,7 +95,7 @@ const NavegacionMenu = ({t}) => {
                     </NavSecundario>
                 ) : null
             }
-        </div>
+        </Todo>
     );
 }
  

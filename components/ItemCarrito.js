@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {Row, Col} from 'reactstrap';
 import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
+import {i18n} from '../i18n';
 
 const Nombre = styled.p`
     color: var(--colorAzul);
@@ -29,7 +30,6 @@ const BtnSimbolo = styled.button`
     }
 `;
 
-
 const ItemCarrito = ({item, id}) => {
 
     const SeleccionContext = useContext(seleccionContext);
@@ -42,7 +42,7 @@ const ItemCarrito = ({item, id}) => {
     return (
         <Row key={id} style={{marginBottom: '.5rem'}}>
             <Col xs={8} style={{margin: 'auto'}}>
-                <Nombre>{item.nombre}</Nombre>
+                <Nombre>{ i18n.language === 'es' ? item.nombre : item.en_nombre}</Nombre>
             </Col>
             <ColumnaCantidad xs={4} >
                 <BtnSimbolo

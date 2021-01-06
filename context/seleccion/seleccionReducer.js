@@ -48,7 +48,7 @@ const Reducer = (state, action) => {
             }
 
         case CAMBIAR_CANTIDAD:
-            const carr = state.productosCarrito.map(prod => {
+            const carr = state.productosCarrito.map((prod, index, object) => {
                 if(prod.nombre === action.payload.nombre) {
                     if(action.payload.operacion === 'suma') {
                         prod.cantidad ++;

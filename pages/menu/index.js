@@ -27,12 +27,11 @@ const Menu = ({t}) => {
     const [stickyHeader, setStickyHeader] = useState(false)
     
     function chequearScroll() {
-        console.log(window.pageYOffset);
-        if (!stickyHeader && window.pageYOffset > 120){
+        if (!stickyHeader && window.pageYOffset > 100){
             setStickyHeader(true)
             document.querySelector('body').classList.remove('mt-0');
             document.querySelector('body').classList.add('mt-10r');
-        } else if (stickyHeader && window.pageYOffset <= 120){
+        } else if (stickyHeader && window.pageYOffset <= 100){
             setStickyHeader(false)
             document.querySelector('body').classList.remove('mt-10r');
             document.querySelector('body').classList.add('mt-0');
@@ -71,6 +70,7 @@ const Menu = ({t}) => {
     }, [])
 
     const cPlatos = [
+        { nombre: t('CatPlatos.Destacados'), codigo: 'destacado' },
         { nombre: t('CatPlatos.Mano'), codigo: 'mano' },
         { nombre: t('CatPlatos.Quesos'), codigo: 'quesos' },
         { nombre: t('CatPlatos.Crudas'), codigo: 'crudas' },
@@ -124,7 +124,7 @@ const Menu = ({t}) => {
     const RowPersonalizada = styled(Row)`
         background-color: var(--colorAzul);
         position: sticky;
-        top: 3rem;
+        top: 0;
         z-index: 998;
         padding: 2rem 0;
     `;
@@ -135,7 +135,7 @@ const Menu = ({t}) => {
         right: -0.5rem;
         padding: .5rem;
         border-radius: 100%;
-        background: red;
+        background: var(--colorNaranja);
         color: white;
     `;
 
@@ -207,8 +207,8 @@ const Menu = ({t}) => {
                         </a>
                     </Col>
                 </RowPersonalizada>
-
                 <NavegacionMenu />
+
 
                 { (etapa !== null) ? <EleccionContenido 
                     cPlatos={cPlatos} cCocteleria={cCocteleria} cVinos={cVinos} cBebidas={cBebidas}

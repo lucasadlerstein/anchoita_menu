@@ -2,7 +2,7 @@ import React, {useEffect, useContext, useState} from 'react';
 import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
 import ItemCarrito from './ItemCarrito';
-
+import {withTranslation, i18n} from '../i18n';
 const Fondo = styled.div`
     margin: 0 auto;
     width: 95%;
@@ -54,7 +54,7 @@ const BotonesCarrito = styled.div`
     justify-content: space-between;
 `;
 
-const Carrito = () => {
+const Carrito = ({t}) => {
 
     const SeleccionContext = useContext(seleccionContext);
     const { carrito, visibilidadCarrito, productosCarrito, vaciarCarrito } = SeleccionContext;
@@ -107,7 +107,7 @@ const Carrito = () => {
             {
                 (hayComidas) ? (
                     <>
-                        <Categoria>Comidas</Categoria> 
+                        <Categoria>{t('Secciones.Comidas')}</Categoria> 
                         {productosCarrito.map((item, id) => {
                             if(item.categoria === 'comidas' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />
@@ -121,7 +121,7 @@ const Carrito = () => {
             {
                 (hayVinos) ? (
                     <>
-                        <Categoria>Vinos</Categoria> 
+                        <Categoria>{t('Secciones.Vinos')}</Categoria> 
                         {productosCarrito.map((item, id) => {
                             if(item.categoria === 'vinos' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />
@@ -135,7 +135,7 @@ const Carrito = () => {
             {
                 (hayCocteles) ? (
                     <>
-                        <Categoria>Cócteles</Categoria> 
+                        <Categoria>{t('Secciones.Cocteles')}</Categoria> 
                         {productosCarrito.map((item, id) => {
                             if(item.categoria === 'cocteleria' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />
@@ -149,7 +149,7 @@ const Carrito = () => {
             {
                 (hayBebidas) ? (
                     <>
-                        <Categoria>Bebidas</Categoria> 
+                        <Categoria>{t('Secciones.Bebidas')}</Categoria> 
                         {productosCarrito.map((item, id) => {
                             if(item.categoria === 'bebidas' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />
@@ -163,4 +163,4 @@ const Carrito = () => {
     );
 }
  
-export default Carrito;
+export default withTranslation('common')(Carrito);

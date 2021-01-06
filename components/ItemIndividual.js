@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {Row, Col} from 'reactstrap';
 import seleccionContext from '../context/seleccion/seleccionContext';
+import {i18n, withTranslation} from '../i18n';
 
 const Item = styled(Row)`
     margin-top: 1.5rem;
@@ -47,13 +48,15 @@ const AgregarBtn = styled.button`
     }
 `;
 
-const ItemIndividual = ({producto, etapa}) => {
+const ItemIndividual = ({producto, etapa, t}) => {
 
     useEffect(() => {
         if(!producto.descripcion) producto.descripcion = '';
         if(!producto.uva) producto.uva = '';
         if(!producto.anada) producto.anada = '';
         if(!producto.bodega) producto.bodega = '';
+        if(!producto.en_nombre) producto.en_nombre = '';
+        if(!producto.en_descripcion) producto.en_descripcion = '';
         // eslint-disable-next-line
     }, [])
 
@@ -63,6 +66,7 @@ const ItemIndividual = ({producto, etapa}) => {
     const agregarAlCarrito = (producto) => {
         const nuevo = {
             nombre: producto.nombre,
+            en_nombre: producto.en_nombre,
             categoria: etapa,
             cantidad: 1
         }
@@ -77,7 +81,10 @@ const ItemIndividual = ({producto, etapa}) => {
             || producto.descripcion.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
             || producto.anada.toString().normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
             || producto.uva.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.bodega.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase()) ) ? (
+            || producto.bodega.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase()) 
+            || producto.en_nombre.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
+            || producto.en_descripcion.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
+            ) ? (
                 <Item>
                     <Col xs={1}>
                         <AgregarBtn
@@ -85,9 +92,9 @@ const ItemIndividual = ({producto, etapa}) => {
                         >+</AgregarBtn>
                     </Col>
                     <Col xs={9}>
-                        <Nombre>{producto.nombre} {(producto.anada ? producto.anada : null)}</Nombre>
+                        <Nombre>{i18n.language === 'es' ? producto.nombre : producto.en_nombre } {(producto.anada ? producto.anada : null)}</Nombre>
                         {
-                            (producto.bodega) ? <Vinedo>{producto.bodega} - {producto.uva}</Vinedo> : (producto.descripcion) ? <Vinedo>{producto.descripcion}</Vinedo> : null
+                            (producto.bodega) ? <Vinedo>{producto.bodega} - {producto.uva}</Vinedo> : (producto.descripcion) ? <Vinedo>{i18n.language === 'es' ? producto.descripcion : producto.en_descripcion}</Vinedo> : null
                         }
                         
                         {(producto.t375) ? <Vinedo>375ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
@@ -107,4 +114,4 @@ const ItemIndividual = ({producto, etapa}) => {
     );
 }
  
-export default ItemIndividual;
+export default withTranslation('common')(ItemIndividual);

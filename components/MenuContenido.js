@@ -84,6 +84,8 @@ const MenuContenido = ({contenido, tipo, categorias, etapa, t}) => {
                             contenido.map(prod => (
                                 (prod.categoria === item.codigo && prod.visible === true) ? (
                                     <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                ) : (prod.destacado === true && prod.visible === true && item.codigo === 'destacado') ? (
+                                    <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                 ) : null
                             ))
                         }

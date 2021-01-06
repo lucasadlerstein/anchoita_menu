@@ -105,7 +105,9 @@ const SeleccionState = ({children}) => {
     }
 
     const actualizarStorage = () => {
-        localStorage.setItem('carrito', JSON.stringify(state.productosCarrito));
+        setTimeout(() => {
+            localStorage.setItem('carrito', JSON.stringify(state.productosCarrito));
+        }, 500);
     }
 
     const getStorage = () => {

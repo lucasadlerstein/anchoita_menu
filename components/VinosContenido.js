@@ -118,14 +118,14 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                         <>  
                                             {
                                                 (pais === 'copa') ? (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true && reg.visible === false) ? (
+                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true && reg.visible === false && prod.visible === true) ? (
                                                         <>
                                                         <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
                                                         {reg.visible = true}
                                                         </>
                                                     ) : null
                                                 ) : (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo && reg.visible === false) ? (
+                                                    (reg.es === prod.region && prod.tipo === cat.codigo && reg.visible === false && prod.visible === true) ? (
                                                         <>
                                                             <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
                                                             { reg.visible = true }
