@@ -6,7 +6,7 @@ import {i18n, withTranslation} from '../i18n';
 
 const Item = styled(Row)`
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     /* padding: 0 1rem; */
     color: var(--colorAzul);
 `;
@@ -67,6 +67,8 @@ const ItemIndividual = ({producto, etapa, t}) => {
         const nuevo = {
             nombre: producto.nombre,
             en_nombre: producto.en_nombre,
+            descripcion: producto.descripcion,
+            en_descripcion: producto.en_descripcion,
             categoria: etapa,
             cantidad: 1
         }
@@ -77,13 +79,13 @@ const ItemIndividual = ({producto, etapa, t}) => {
         <>
         {
             (busqueda === ''
-            || producto.nombre.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.descripcion.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.anada.toString().normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.uva.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.bodega.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase()) 
-            || producto.en_nombre.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
-            || producto.en_descripcion.normalize("NFD").toLowerCase().includes(busqueda.normalize("NFD").toLowerCase())
+            || producto.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
+            || producto.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
+            || producto.anada.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
+            || producto.uva.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
+            || producto.bodega.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase()) 
+            || producto.en_nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
+            || producto.en_descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
             ) ? (
                 <Item>
                     <Col xs={1}>
@@ -92,16 +94,16 @@ const ItemIndividual = ({producto, etapa, t}) => {
                         >+</AgregarBtn>
                     </Col>
                     <Col xs={9}>
-                        <Nombre>{i18n.language === 'es' ? producto.nombre : producto.en_nombre } {(producto.anada ? producto.anada : null)}</Nombre>
+                        <Nombre>{(i18n.language === 'en' && producto.en_nombre) ? producto.en_nombre : producto.nombre } {(producto.anada ? producto.anada : null)}</Nombre>
                         {
-                            (producto.bodega) ? <Vinedo>{producto.bodega} - {producto.uva}</Vinedo> : (producto.descripcion) ? <Vinedo>{i18n.language === 'es' ? producto.descripcion : producto.en_descripcion}</Vinedo> : null
+                            (producto.bodega) ? <Vinedo>{producto.bodega} - {producto.uva}</Vinedo> : (producto.descripcion) ? <Vinedo>{(i18n.language === 'en' && producto.en_descripcion) ? producto.en_descripcion : producto.descripcion}</Vinedo> : null
                         }
                         
-                        {(producto.t375) ? <Vinedo>375ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
-                        {(producto.t500) ? <Vinedo>500ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
-                        {(producto.t1125) ? <Vinedo>1125ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
-                        {(producto.t1500) ? <Vinedo>1500ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
-                        {(producto.t3000) ? <Vinedo>3000ml{producto.t750 ? ' - 750ml' : null} </Vinedo> : null}
+                        {(producto.t375) ? <Vinedo>375ml </Vinedo> : null}
+                        {(producto.t500) ? <Vinedo>500ml </Vinedo> : null}
+                        {(producto.t1125) ? <Vinedo>1125ml </Vinedo> : null}
+                        {(producto.t1500) ? <Vinedo>1500ml </Vinedo> : null}
+                        {(producto.t3000) ? <Vinedo>3000ml </Vinedo> : null}
                         
                     </Col>
                     <Col xs={2} className="pl-0">

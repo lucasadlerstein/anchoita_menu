@@ -7,10 +7,13 @@ import {i18n, withTranslation} from '../i18n';
 import PropTypes from 'prop-types'
 
 const Logo = styled.img`
-
+  max-width: 17rem;
+  margin: 0 auto 5.5rem auto;
+  text-align: center;
 `;
 
 const Lista = styled.ul`
+  text-align: left;
   li {
     padding: 1rem 0;
     border-bottom: 1px solid #7a7a7a;
@@ -27,7 +30,7 @@ const Lista = styled.ul`
 const ListaSubItems = styled.ul`
   li {
     border: none;
-    padding: 0;
+    padding: .2rem;
     text-transform: none;
   }
 `;
@@ -36,13 +39,24 @@ const BotonIdioma = styled.button`
   background-color: transparent;
   border: none;
   text-transform: uppercase;
-  margin: 10rem auto 0 auto;
+  margin: 5rem auto 0 auto;
   text-align: center;
   color: white;
   width: 100%;
   &:focus {
     outline: none;
   }
+`;
+
+const Todo = styled.div`
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 `;
 
 const Inicio = ({t}) => {
@@ -97,8 +111,8 @@ const Inicio = ({t}) => {
         crossOrigin=""
       />
     </Head>
-    <div style={{width: '60%', margin: 'auto'}}>
-      <Logo className="my-5" src="img/logo.png" alt="Logo Anchoita" />
+    <Todo>
+      <Logo src="img/logo.png" alt="Logo Anchoita" />
       <Lista>
         <li><span>01. </span>
           <a
@@ -156,7 +170,7 @@ const Inicio = ({t}) => {
       <BotonIdioma
         onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
       >{i18n.language === 'en' ? 'MENÚ EN ESPAÑOL' : 'ENGLISH MENU'}</BotonIdioma>
-    </div>
+    </Todo>
     </>
   );
 }

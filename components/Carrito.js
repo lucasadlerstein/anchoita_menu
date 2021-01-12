@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
 import ItemCarrito from './ItemCarrito';
 import {withTranslation, i18n} from '../i18n';
+
 const Fondo = styled.div`
     margin: 0 auto;
     width: 95%;
@@ -23,6 +24,7 @@ const Fondo = styled.div`
     padding: 2rem 1.5rem;
     color: var(--colorAzul);
     z-index: 999;
+    overflow: scroll;
 `;
 
 const Cerrar = styled.button`
@@ -135,7 +137,7 @@ const Carrito = ({t}) => {
             {
                 (hayCocteles) ? (
                     <>
-                        <Categoria>{t('Secciones.Cocteles')}</Categoria> 
+                        <Categoria>{t('Secciones.Cocteleria')}</Categoria> 
                         {productosCarrito.map((item, id) => {
                             if(item.categoria === 'cocteleria' && item.cantidad !== 0) {
                                 return <ItemCarrito key={id} item={item} id={id} />

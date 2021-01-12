@@ -7,6 +7,13 @@ import {i18n} from '../i18n';
 const Nombre = styled.p`
     color: var(--colorAzul);
     margin: 0;
+    font-weight: bold;
+`;
+
+const Descripcion = styled.p`
+    color: var(--colorAzul);
+    margin: 0;
+    font-size: 1.5rem;
 `;
 
 const Cantidad = styled.p`
@@ -40,9 +47,10 @@ const ItemCarrito = ({item, id}) => {
     }
 
     return (
-        <Row key={id} style={{marginBottom: '.5rem'}}>
+        <Row key={id} style={{marginTop: '1rem'}}>
             <Col xs={8} style={{margin: 'auto'}}>
-                <Nombre>{ i18n.language === 'es' ? item.nombre : item.en_nombre}</Nombre>
+                <Nombre>{ (i18n.language === 'en' && item.en_nombre) ? item.en_nombre : item.nombre}</Nombre>
+                <Descripcion>{ (i18n.language === 'en' && item.en_descripcion) ? item.en_descripcion : item.descripcion}</Descripcion>
             </Col>
             <ColumnaCantidad xs={4} >
                 <BtnSimbolo

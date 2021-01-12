@@ -34,7 +34,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("/fonts/RobotoCondensed/RobotoCondensed-Regular.ttf");
-  unicode-range: U+30-39;
+  unicode-range: U+0030-0039;
 }
 
 @font-face {
@@ -42,7 +42,7 @@
   font-style: bold;
   font-weight: 600;
   src: url("/fonts/RobotoCondensed/RobotoCondensed-Bold.ttf");
-  unicode-range: U+30-39;
+  unicode-range: U+0030-0039;
 }
 
 
@@ -59,7 +59,7 @@ body {
   color: white;
   min-height: 100vh;
   margin: 0 auto;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-family: var(--fuentePrincipal);
   -webkit-box-shadow: -3px 5px 43px -19px rgba(151, 129, 129, 0.75);
   -moz-box-shadow: -3px 5px 43px -19px rgba(0,0,0,0.75);
