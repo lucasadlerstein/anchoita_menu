@@ -47,7 +47,7 @@ const ItemCarrito = ({item, id}) => {
     }
 
     return (
-        <Row key={id} style={{marginTop: '1rem'}}>
+        <Row key={id} style={{marginTop: '1.5rem'}}>
             <Col xs={8} style={{margin: 'auto'}}>
                 <Nombre>{ (i18n.language === 'en' && item.en_nombre) ? item.en_nombre : item.nombre}</Nombre>
                 <Descripcion>{ (i18n.language === 'en' && item.en_descripcion) ? item.en_descripcion : item.descripcion}</Descripcion>

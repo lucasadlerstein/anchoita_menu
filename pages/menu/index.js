@@ -28,12 +28,20 @@ const Menu = ({t}) => {
     
     function chequearScroll() {
         if (!stickyHeader && window.pageYOffset > 100){
+            if (etapa === 'vinos') {
+                document.querySelector('body').classList.remove('mt-0');
+                document.querySelector('body').classList.remove('mt-15r');
+                document.querySelector('body').classList.add('mt-18r');                
+            } else {
+                document.querySelector('body').classList.remove('mt-0');
+                document.querySelector('body').classList.remove('mt-18r');
+                document.querySelector('body').classList.add('mt-15r');
+            }
             setStickyHeader(true)
-            document.querySelector('body').classList.remove('mt-0');
-            document.querySelector('body').classList.add('mt-10r');
         } else if (stickyHeader && window.pageYOffset <= 100){
             setStickyHeader(false)
-            document.querySelector('body').classList.remove('mt-10r');
+            document.querySelector('body').classList.remove('mt-15r');
+            document.querySelector('body').classList.remove('mt-18r');
             document.querySelector('body').classList.add('mt-0');
         }  
     }

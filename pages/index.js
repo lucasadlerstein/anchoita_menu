@@ -50,6 +50,7 @@ const BotonIdioma = styled.button`
 
 const Todo = styled.div`
   width: 60%;
+  max-width: 30rem;
   margin: auto;
   text-align: center;
   position: absolute;

@@ -108,9 +108,14 @@ ul {
   display: block;
 }
 
-.mt-10r {
+.mt-15r {
   transition: all .5s ease;
   margin-top: 15rem!important;
+}
+
+.mt-18r {
+  transition: all .5s ease;
+  margin-top: 18rem!important;
 }
 
 .shake-and-pop {

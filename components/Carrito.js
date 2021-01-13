@@ -48,6 +48,10 @@ const Categoria = styled.h5`
     font-weight: bold;
     font-size: 1.8rem;
     padding-top: 1rem;
+    margin-top: 2rem;
+    &:first-of-type {
+        margin-top: 0;
+    }
 `;
 
 const BotonesCarrito = styled.div`
