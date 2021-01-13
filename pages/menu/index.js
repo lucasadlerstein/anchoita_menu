@@ -135,6 +135,7 @@ const Menu = ({t}) => {
         top: 0;
         z-index: 998;
         padding: 2rem 0;
+        min-height: 8rem;
     `;
 
     const Notificacion = styled.span`
