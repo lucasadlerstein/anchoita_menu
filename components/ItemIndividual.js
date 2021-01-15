@@ -19,7 +19,13 @@ const Nombre = styled.p`
 
 const Vinedo = styled.p`
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+`;
+
+const TamanoVino = styled.p`
+    margin: 0 1rem 0 0;
+    font-size: 1.4rem;
+    float: left;
 `;
 
 const Precio = styled.p`
@@ -61,7 +67,7 @@ const ItemIndividual = ({producto, etapa, t}) => {
     }, [])
 
     const SeleccionContext = useContext(seleccionContext);
-    const { agregarNuevo, busqueda } = SeleccionContext;
+    const { agregarNuevo, busqueda, v_pais } = SeleccionContext;
 
     const agregarAlCarrito = (producto) => {
         const nuevo = {
@@ -98,13 +104,24 @@ const ItemIndividual = ({producto, etapa, t}) => {
                         {
                             (producto.bodega) ? <Vinedo>{producto.bodega} - {producto.uva}</Vinedo> : (producto.descripcion) ? <Vinedo>{(i18n.language === 'en' && producto.en_descripcion) ? producto.en_descripcion : producto.descripcion}</Vinedo> : null
                         }
-                        
-                        {(producto.t375) ? <Vinedo>375ml </Vinedo> : null}
-                        {(producto.t500) ? <Vinedo>500ml </Vinedo> : null}
-                        {(producto.t1125) ? <Vinedo>1125ml </Vinedo> : null}
-                        {(producto.t1500) ? <Vinedo>1500ml </Vinedo> : null}
-                        {(producto.t3000) ? <Vinedo>3000ml </Vinedo> : null}
-                        
+                        {
+                            (v_pais === 'copa') ? (
+                                <>
+                                    {(producto.c140) ? <TamanoVino>140ml </TamanoVino> : null}
+                                    {(producto.c120) ? <TamanoVino>120ml </TamanoVino> : null}
+                                    {(producto.c70) ? <TamanoVino>70ml </TamanoVino> : null}
+                                    {(producto.c35) ? <TamanoVino>35ml </TamanoVino> : null}
+                                </>
+                            ) : (
+                                <>
+                                    {(producto.t375) ? <TamanoVino>375ml </TamanoVino> : null}
+                                    {(producto.t500) ? <TamanoVino>500ml </TamanoVino> : null}
+                                    {(producto.t1125) ? <TamanoVino>1125ml </TamanoVino> : null}
+                                    {(producto.t1500) ? <TamanoVino>1500ml </TamanoVino> : null}
+                                    {(producto.t3000) ? <TamanoVino>3000ml </TamanoVino> : null}
+                                </>
+                            )
+                        }
                     </Col>
                     <Col xs={2} className="pl-0">
                         <Precio>{producto.precio}</Precio>

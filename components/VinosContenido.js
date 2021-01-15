@@ -118,7 +118,7 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                         <>  
                                             {
                                                 (pais === 'copa') ? (
-                                                    (reg.es === prod.region && prod.tipo === cat.codigo && prod.copa === true && reg.visible === false && prod.visible === true) ? (
+                                                    ((reg.es === prod.region && prod.tipo === cat.codigo && reg.visible === false && prod.visible === true) && (prod.c140 === true || prod.c120 === true || prod.c70 === true || prod.c35 === true)) ? (
                                                         <>
                                                         <Provincia key={reg.es} id={reg.es}>{reg.es}</Provincia>
                                                         {reg.visible = true}
@@ -140,7 +140,7 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : (pais === 'mundo' && prod.pais !== 'Argentina') ? (
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'copa' && prod.copa === true) ? (
+                                                    ) : ((pais === 'copa') && (prod.c140 === true || prod.c120 === true || prod.c70 === true || prod.c35 === true)) ? (
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : null
                                                 ) : null
@@ -152,7 +152,7 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : (pais === 'mundo' && prod.pais !== 'Argentina'  && prod.visible === true ) ? (
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
-                                                    ) : (pais === 'copa' && prod.copa === true  && prod.visible === true ) ? (
+                                                    ) : ((pais === 'copa' && prod.visible === true) && (prod.c140 === true || prod.c120 === true || prod.c70 === true || prod.c35 === true) ) ? (
                                                         <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : null
                                                 ) : null
