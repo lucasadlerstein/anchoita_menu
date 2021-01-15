@@ -46,7 +46,7 @@ const Provincia = styled.p`
         content: '•';
         /* padding-top: 5rem; */
         padding-right: .5rem;
-        vertical-align: text-top;
+        vertical-align: middle;
     }
 `;
 
