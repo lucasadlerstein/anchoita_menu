@@ -44,9 +44,10 @@ const Provincia = styled.p`
     margin: 0 0 1rem 0;
     &:before {
         content: '•';
-        padding-top: 5rem;
+        /* padding-top: 5rem; */
         padding-right: .5rem;
-        vertical-align: text-bottom;
+        /* vertical-align: text-bottom; */
+        vertical-align: -50%;
     }
 `;
 
