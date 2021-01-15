@@ -46,8 +46,7 @@ const Uva = styled.p`
     &:before {
         content: '•';
         padding-right: .5rem;
-        /* vertical-align: -50%; */
-        vertical-align: text-bottom;
+        vertical-align: text-top;
     }
 `;
 
