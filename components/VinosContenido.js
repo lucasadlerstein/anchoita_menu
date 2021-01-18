@@ -137,11 +137,11 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                             {
                                                 (prod.tipo === cat.codigo && prod.region === reg.es  && prod.visible === true) ? (
                                                     (pais === 'argentina' && prod.pais === 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={false} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : (pais === 'mundo' && prod.pais !== 'Argentina') ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={false} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : ((pais === 'copa') && (prod.c140 === true || prod.c120 === true || prod.c70 === true || prod.c35 === true)) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={false} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : null
                                                 ) : null
                                             }
@@ -149,11 +149,11 @@ const VinosContenido = ({contenido, tipo, pais, categorias, etapa, t}) => {
                                             {           
                                                 ((prod.region === reg.es && cat.codigo === 'tamanos') && (prod.t375 || prod.t500 || prod.t1125 || prod.t1500 || prod.t3000)) ? (
                                                     (pais === 'argentina' && prod.pais === 'Argentina'  && prod.visible === true ) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={true} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : (pais === 'mundo' && prod.pais !== 'Argentina'  && prod.visible === true ) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={true} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : ((pais === 'copa' && prod.visible === true) && (prod.c140 === true || prod.c120 === true || prod.c70 === true || prod.c35 === true) ) ? (
-                                                        <ItemIndividual key={prod.id} producto={prod} etapa={etapa} />
+                                                        <ItemIndividual tamanosBool={true} key={prod.id} producto={prod} etapa={etapa} />
                                                     ) : null
                                                 ) : null
                                             }

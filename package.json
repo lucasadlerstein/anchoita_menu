@@ -21,6 +21,8 @@
     "next-i18next": "^7.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "reactstrap": "^8.7.1"
+    "reactstrap": "^8.7.1",
+    "sweetalert2": "^10.13.0",
+    "sweetalert2-react-content": "^3.2.2"
   }
 }

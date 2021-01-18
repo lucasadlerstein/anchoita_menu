@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import seleccionContext from '../context/seleccion/seleccionContext';
 import ItemCarrito from './ItemCarrito';
 import {withTranslation, i18n} from '../i18n';
+import Swal from 'sweetalert2';
 
 const Fondo = styled.div`
     margin: 0 auto;
@@ -89,12 +90,25 @@ const Carrito = ({t}) => {
     }, [])
 
     function clickVaciarCarrito() {
-        vaciarCarrito()
-        setHayBebidas(false);
-        setHayVinos(false);
-        setHayCocteles(false);
-        setHayComidas(false);
-        visibilidadCarrito(true);
+        Swal.fire({
+            title: '¿Estás seguro/a de eliminar todos los productos?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                vaciarCarrito()
+                setHayBebidas(false);
+                setHayVinos(false);
+                setHayCocteles(false);
+                setHayComidas(false);
+                visibilidadCarrito(true);
+            }
+          })          
     } 
 
     return (

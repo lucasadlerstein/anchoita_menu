@@ -54,7 +54,7 @@ const AgregarBtn = styled.button`
     }
 `;
 
-const ItemIndividual = ({producto, etapa, t}) => {
+const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
 
     useEffect(() => {
         if(!producto.descripcion) producto.descripcion = '';
@@ -112,7 +112,7 @@ const ItemIndividual = ({producto, etapa, t}) => {
                                     {(producto.c70) ? <TamanoVino>70ml </TamanoVino> : null}
                                     {(producto.c35) ? <TamanoVino>35ml </TamanoVino> : null}
                                 </>
-                            ) : (
+                            ) : (tamanosBool === true) ? (
                                 <>
                                     {(producto.t375) ? <TamanoVino>375ml </TamanoVino> : null}
                                     {(producto.t500) ? <TamanoVino>500ml </TamanoVino> : null}
@@ -120,7 +120,7 @@ const ItemIndividual = ({producto, etapa, t}) => {
                                     {(producto.t1500) ? <TamanoVino>1500ml </TamanoVino> : null}
                                     {(producto.t3000) ? <TamanoVino>3000ml </TamanoVino> : null}
                                 </>
-                            )
+                            ) : null
                         }
                     </Col>
                     <Col xs={2} className="pl-0">
