@@ -49,6 +49,7 @@ const Categoria = styled.h5`
     font-size: 1.8rem;
     padding-top: 1rem;
     margin-top: 2rem;
+    text-align: center;
     &:first-of-type {
         margin-top: 0;
     }

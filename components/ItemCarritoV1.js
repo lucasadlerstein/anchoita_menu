@@ -23,9 +23,8 @@ const Cantidad = styled.p`
     font-size: 1.8rem;
 `;
 
-const ColumnaCantidad = styled.div`
+const ColumnaCantidad = styled(Col)`
     display: flex;
-    margin-top: 1.5rem;
 `;
 
 const BtnSimbolo = styled.button`
@@ -48,29 +47,25 @@ const ItemCarrito = ({item, id}) => {
     }
 
     return (
-        <div className="text-center mt-5">
-            <Nombre>{ (i18n.language === 'en' && item.en_nombre) ? item.en_nombre : item.nombre}</Nombre>
-            <Descripcion>{ (i18n.language === 'en' && item.en_descripcion) ? item.en_descripcion : item.descripcion}</Descripcion>
-            <ColumnaCantidad>
-                <div
-                    style={{borderBottom: '1.5px solid var(--colorAzul)', width: '20%', maxWidth: '5rem', margin: 'auto auto auto 3rem'}}
-                ></div>
+        <Row key={id} style={{marginTop: '2.5rem'}}>
+            <Col xs={8} style={{margin: 'auto'}}>
+                <Nombre>{ (i18n.language === 'en' && item.en_nombre) ? item.en_nombre : item.nombre}</Nombre>
+                <Descripcion>{ (i18n.language === 'en' && item.en_descripcion) ? item.en_descripcion : item.descripcion}</Descripcion>
+            </Col>
+            <ColumnaCantidad xs={4} >
                 <BtnSimbolo
                     onClick={() => clickSimbolo(item.nombre, 'resta')}
                 >
-                    <img src="img/menos.png" alt="Restar una unidad" style={{maxHeight: '2.5rem'}} />
+                    <img src="img/menos.png" alt="Restar una unidad" />
                 </BtnSimbolo>
                 <Cantidad>{item.cantidad}</Cantidad>
                 <BtnSimbolo
                     onClick={() => clickSimbolo(item.nombre, 'suma')}
                 >
-                    <img src="img/mas.png" alt="Agregar una unidad" style={{maxHeight: '2.5rem'}} />
+                    <img src="img/mas.png" alt="Agregar una unidad" />
                 </BtnSimbolo>
-                <div
-                    style={{borderBottom: '1.5px solid var(--colorAzul)', width: '20%', maxWidth: '5rem', margin: 'auto 3rem auto auto'}}
-                ></div>
             </ColumnaCantidad>
-        </div>
+        </Row>
     );
 }
  
