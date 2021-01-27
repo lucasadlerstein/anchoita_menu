@@ -33,6 +33,7 @@ const Precio = styled.p`
     margin: 0 1rem 0 0;
     text-align: right;
     font-size: 1.8rem;
+    font-family: 'RobotoCondensed', serif;
 `;
 
 const AgregarBtn = styled.button`
@@ -46,6 +47,9 @@ const AgregarBtn = styled.button`
     /* margin: auto; */
     position: absolute;
     top: -8px;
+    white-space:nowrap;
+    overflow:visible;
+
     &:hover{
         color: var(--colorNaranja);
     }

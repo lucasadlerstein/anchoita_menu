@@ -1,8 +1,10 @@
 :root {
   --colorAzul: #0E3453;
   --colorNaranja: #DF6839;
-  --fuentePrincipal: 'RobotoCondensed', 'Henderson', sans-serif;
-  --fuenteSecundaria: 'RobotoCondensed', 'Henderson', serif;
+  --fuentePrincipal: 'Henderson', sans-serif;
+  /* --fuentePrincipal: 'RobotoCondensed', 'Henderson', sans-serif; */
+  --fuenteSecundaria: 'Henderson', serif;
+  /* --fuenteSecundaria: 'RobotoCondensed', 'Henderson', serif; */
 }
 
 @font-face {
