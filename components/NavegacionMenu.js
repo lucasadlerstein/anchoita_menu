@@ -4,7 +4,7 @@ import seleccionContext from '../context/seleccion/seleccionContext';
 import {withTranslation} from '../i18n';
 
 const Nav = styled.div`
-    display: inline-block;
+    /* display: inline-block; */
 `;
 
 const Item = styled.button`

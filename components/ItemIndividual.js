@@ -45,9 +45,10 @@ const AgregarBtn = styled.button`
     text-align: center;
     font-size: 2.5rem;
     /* margin: auto; */
-    position: absolute;
-    top: -8px;
-    white-space:nowrap;
+    
+    /* position: absolute; */
+    /* top: -8px; */
+    /* white-space:nowrap; */
     overflow:visible;
 
     &:hover{
@@ -98,7 +99,13 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
             || producto.en_descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
             ) ? (
                 <Item>
-                    <Col xs={1}>
+                    <Col xs={1}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            top: '-9px'
+                        }}
+                    >
                         <AgregarBtn
                             onClick={() => agregarAlCarrito(producto)}
                         >+</AgregarBtn>
