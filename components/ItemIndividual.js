@@ -46,11 +46,16 @@ const AgregarBtn = styled.button`
     font-size: 2.5rem;
     /* margin: auto; */
     
-    position: absolute;
-    top: -8px;
+    /* position: absolute; */
+    /* top: -8px;
     left:auto;
     right:auto;
-    white-space:nowrap;
+    white-space:nowrap; */
+
+    margin: 0 0 0 0.5rem;
+    text-align: left;
+
+
     overflow:visible;
 
     &:hover{
@@ -101,12 +106,11 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
             || producto.en_descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
             ) ? (
                 <Item>
-                    <Col xs={1}
+                    <Col xs={1} className="pr-0"
                         style={{
                             // display: 'flex',
                             // alignItems: 'flex-start',
                             // top: '-9px'
-                            position: 'relative'
                         }}
                     >
                         <AgregarBtn
