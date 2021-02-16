@@ -46,8 +46,10 @@ const AgregarBtn = styled.button`
     font-size: 2.5rem;
     /* margin: auto; */
     
-    position: relative;
+    position: absolute;
     top: -8px;
+    left:auto;
+    right:auto;
     white-space:nowrap;
     overflow:visible;
 
@@ -104,6 +106,7 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
                             // display: 'flex',
                             // alignItems: 'flex-start',
                             // top: '-9px'
+                            position: 'relative'
                         }}
                     >
                         <AgregarBtn
