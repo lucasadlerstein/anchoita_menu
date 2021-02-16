@@ -46,9 +46,9 @@ const AgregarBtn = styled.button`
     font-size: 2.5rem;
     /* margin: auto; */
     
-    /* position: absolute; */
-    /* top: -8px; */
-    /* white-space:nowrap; */
+    position: relative;
+    top: -8px;
+    white-space:nowrap;
     overflow:visible;
 
     &:hover{
@@ -101,9 +101,9 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
                 <Item>
                     <Col xs={1}
                         style={{
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            top: '-9px'
+                            // display: 'flex',
+                            // alignItems: 'flex-start',
+                            // top: '-9px'
                         }}
                     >
                         <AgregarBtn
