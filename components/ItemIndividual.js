@@ -62,6 +62,13 @@ const AgregarBtn = styled.button`
     }
 `;
 
+const ColumnaPrimera = styled(Col)`
+    // Si es IPhone: 2px padding left
+    @supports (-webkit-touch-callout: none) {
+        padding-left: 2px;
+    }
+`;
+
 const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
 
     useEffect(() => {
@@ -102,11 +109,11 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
             || producto.en_descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
             ) ? (
                 <Item>
-                    <Col xs={1} className="pr-0" style={{paddingLeft: '2px'}}>
+                    <ColumnaPrimera xs={1} className="pr-0">
                         <AgregarBtn
                             onClick={() => agregarAlCarrito(producto)}
                         >+</AgregarBtn>
-                    </Col>
+                    </ColumnaPrimera>
                     <Col xs={9}>
                         <Nombre>{(i18n.language === 'en' && producto.en_nombre) ? producto.en_nombre : producto.nombre } {(producto.anada ? producto.anada : null)}</Nombre>
                         {
