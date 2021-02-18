@@ -102,7 +102,7 @@ const ItemIndividual = ({producto, etapa, t, tamanosBool}) => {
             || producto.en_descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase())
             ) ? (
                 <Item>
-                    <Col xs={1} >
+                    <Col xs={1} className="pr-0">
                         <AgregarBtn
                             onClick={() => agregarAlCarrito(producto)}
                         >+</AgregarBtn>
